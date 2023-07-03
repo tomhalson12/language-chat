@@ -1,0 +1,17 @@
+.DifficultyButton {
+  border-radius: var(--borderRadius);
+  background-color: var(--borderColor);
+
+  font-size: small;
+  color: var(--textDarkBg);
+
+  padding: 12px;
+
+  cursor: pointer;
+}
+
+.DifficultyButton:hover {
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  border: 1px solid var(--borderColor);
+}

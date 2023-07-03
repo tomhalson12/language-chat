@@ -1,0 +1,42 @@
+.Sidebar {
+  display: flex;
+  width: 100%;
+  max-width: 350px;
+  justify-content: space-between;
+}
+
+.Sidebar__Reverse {
+  flex-direction: row-reverse;
+}
+
+.Sidebar__Content {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 20px;
+}
+
+.Sidebar__Divider {
+  width: 2px;
+  height: 100%;
+
+  background: var(--borderColor);
+}
+
+.Sidebar__Header {
+  margin-bottom: 20px;
+}
+
+.Sidebar__Title {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 10px;
+
+  font-size: x-large;
+  font-weight: bold;
+}
+
+.Sidebar__Description {
+  font-size: var(--smallText);
+}

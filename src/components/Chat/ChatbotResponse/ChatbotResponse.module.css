@@ -1,0 +1,11 @@
+.ChatbotResponse {
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+}
+
+.ChatbotResponse__Messages {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}

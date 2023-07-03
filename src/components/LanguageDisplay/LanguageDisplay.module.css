@@ -1,0 +1,22 @@
+.LanguageDisplay {
+  width: 75%;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  padding: 20px;
+
+  gap: 20px;
+}
+
+.LanguageDisplay__Title {
+  font-weight: bold;
+  font-size: x-large;
+}
+
+.LanguageDisplay__Flag {
+  width: fit-content !important;
+  height: 50px !important;
+  margin-left: auto;
+}

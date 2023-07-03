@@ -1,0 +1,20 @@
+.Topic {
+  display: flex;
+  justify-content: space-between;
+  background-color: var(--primaryColor1);
+
+  padding: 12px;
+
+  font-weight: bold;
+  font-size: medium;
+
+  border-radius: var(--borderRadius);
+}
+
+.Topic:hover {
+  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+
+  border: 1px solid var(--borderColor);
+
+  cursor: pointer;
+}

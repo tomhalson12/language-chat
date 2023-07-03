@@ -1,0 +1,9 @@
+.SavedPhrase {
+  padding: 12px;
+
+  border-radius: var(--borderRadius);
+
+  font-size: small;
+
+  background-color: var(--primaryColor1);
+}
