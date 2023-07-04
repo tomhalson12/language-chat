@@ -38,5 +38,16 @@ export const ChatThread = ({ languageCode, responses }: ChatThreadProps) => {
     [responses, languageCode],
   )
 
-  return <div className={styles.ChatThread}>{thread}</div>
+  const scrollDiv = React.useRef<null | HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    scrollDiv.current?.scrollIntoView({ behavior: "smooth" })
+  }, [responses])
+
+  return (
+    <div className={styles.ChatThread}>
+      {thread}
+      <div ref={scrollDiv} />
+    </div>
+  )
 }

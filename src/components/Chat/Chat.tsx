@@ -17,12 +17,18 @@ export const Chat = ({ languageCode }: ChatProps) => {
 
   const sendUserMessage = React.useCallback(
     async (message: string) => {
-      const botResponse = await sendMessage()
-      setResponses([
+      const newResponseSet = [
         ...responses,
         { isUserMessage: true, messages: [message] },
-        { isUserMessage: false, messages: botResponse },
-      ])
+      ]
+
+      const botResponse = await sendMessage(newResponseSet)
+
+      newResponseSet.push({
+        isUserMessage: false,
+        messages: botResponse,
+      })
+      setResponses(newResponseSet)
     },
     [responses],
   )
