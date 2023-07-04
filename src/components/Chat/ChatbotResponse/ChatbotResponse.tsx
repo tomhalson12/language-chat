@@ -17,8 +17,12 @@ export const ChatbotResponse = ({
     <div className={styles.ChatbotResponse}>
       <ChatbotAvatar languageCode={languageCode} />
       <div className={styles.ChatbotResponse__Messages}>
-        {messages.map((message) => (
-          <MessageBubble languageCode={languageCode} message={message} />
+        {messages.map((message, i) => (
+          <MessageBubble
+            key={i}
+            languageCode={languageCode}
+            message={message}
+          />
         ))}
       </div>
     </div>

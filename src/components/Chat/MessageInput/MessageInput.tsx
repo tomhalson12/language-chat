@@ -9,10 +9,31 @@ import { BiSolidSend } from "react-icons/bi"
 
 type MessageInputProps = {
   languageCode: LanguageCode
+  sendMessage: (msg: string) => Promise<void>
 }
 
-export const MessageInput = ({ languageCode }: MessageInputProps) => {
+export const MessageInput = ({
+  languageCode,
+  sendMessage,
+}: MessageInputProps) => {
   const [value, setTextarea] = React.useState("")
+
+  const onSendMessage = React.useCallback(async () => {
+    await sendMessage(value)
+
+    setTextarea("")
+  }, [sendMessage, value])
+
+  const onEnter = React.useCallback(
+    async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+      if (e.key === "Enter" && e.shiftKey == false) {
+        e.preventDefault()
+        onSendMessage()
+      }
+    },
+    [onSendMessage],
+  )
+
   return (
     <div className={styles.MessageInput}>
       <div className={styles.MessageInput__Wrapper}>
@@ -23,10 +44,15 @@ export const MessageInput = ({ languageCode }: MessageInputProps) => {
             rows={1}
             value={value}
             onChange={(event) => setTextarea(event.target.value)}
+            onKeyDown={onEnter}
           />
           <span className={styles.MessageInput__HiddenVal}>{value} </span>
         </div>
-        <BiSolidSend color={`var(--${languageCode}Color)`} size="30px" />
+        <BiSolidSend
+          onClick={onSendMessage}
+          color={`var(--${languageCode}Color)`}
+          size="30px"
+        />
       </div>
     </div>
   )

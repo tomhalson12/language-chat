@@ -2,10 +2,12 @@
   display: flex;
   flex-direction: row;
   gap: 10px;
+  width: 100%;
 }
 
 .ChatbotResponse__Messages {
   display: flex;
   flex-direction: column;
   gap: 10px;
+  width: 100%;
 }

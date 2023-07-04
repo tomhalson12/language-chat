@@ -13,25 +13,29 @@ type ChatThreadProps = {
 export const ChatThread = ({ languageCode, responses }: ChatThreadProps) => {
   const thread = React.useMemo(
     () =>
-      responses.reduce((acc: ReactNode[], response) => {
-        if (response.isUserMessage) {
-          acc.push(
-            ...response.messages.map((message) => (
-              <MessageBubble message={message} />
-            )),
-          )
-        } else {
-          acc.push(
-            <ChatbotResponse
-              languageCode={languageCode}
-              messages={response.messages}
-            />,
-          )
-        }
+      responses.reduce(
+        (acc: ReactNode[], response: ChatResponse, index: number) => {
+          if (response.isUserMessage) {
+            acc.push(
+              ...response.messages.map((message) => (
+                <MessageBubble key={index} message={message} />
+              )),
+            )
+          } else {
+            acc.push(
+              <ChatbotResponse
+                key={index}
+                languageCode={languageCode}
+                messages={response.messages}
+              />,
+            )
+          }
 
-        return acc
-      }, []),
-    [],
+          return acc
+        },
+        [],
+      ),
+    [responses, languageCode],
   )
 
   return <div className={styles.ChatThread}>{thread}</div>
