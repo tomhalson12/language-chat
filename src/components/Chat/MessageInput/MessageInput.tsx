@@ -4,7 +4,7 @@
 import styles from "./MessageInput.module.css"
 
 import { LanguageCode } from "@/types"
-import React from "react"
+import React, { useRef } from "react"
 import { BiSolidSend } from "react-icons/bi"
 
 type MessageInputProps = {
@@ -19,6 +19,10 @@ export const MessageInput = ({
   const [value, setTextarea] = React.useState("")
 
   const onSendMessage = React.useCallback(async () => {
+    if (value === "") {
+      return
+    }
+
     await sendMessage(value)
 
     setTextarea("")
@@ -34,11 +38,17 @@ export const MessageInput = ({
     [onSendMessage],
   )
 
+  const textAreaRef = useRef<HTMLTextAreaElement | null>(null)
+
   return (
-    <div className={styles.MessageInput}>
+    <div
+      className={styles.MessageInput}
+      onClick={() => textAreaRef.current?.focus()}
+    >
       <div className={styles.MessageInput__Wrapper}>
         <div className={styles.MessageInput__stretch}>
           <textarea
+            ref={textAreaRef}
             placeholder="Send a message..."
             className={styles.MessageInput__Input}
             rows={1}
@@ -49,6 +59,7 @@ export const MessageInput = ({
           <span className={styles.MessageInput__HiddenVal}>{value} </span>
         </div>
         <BiSolidSend
+          style={{ cursor: "pointer" }}
           onClick={onSendMessage}
           color={`var(--${languageCode}Color)`}
           size="30px"

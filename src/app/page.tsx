@@ -1,3 +1,6 @@
+// prettier-ignore
+"use client"
+
 import styles from "./page.module.css"
 
 import {
@@ -9,6 +12,8 @@ import {
 } from "@/components"
 import { IoIosRefresh } from "react-icons/io"
 import { GoDownload } from "react-icons/go"
+import { LanguageCode } from "@/types"
+import React from "react"
 
 export default function Home() {
   const savedPhrases = [
@@ -22,7 +27,7 @@ export default function Home() {
 
   const topics = ["Football", "Books", "Cooking", "Weather"]
 
-  const langCode = "spanish"
+  const [langCode, setLanguageCode] = React.useState<LanguageCode>("french")
 
   return (
     <div className={styles.Home}>
@@ -40,7 +45,10 @@ export default function Home() {
       </Sidebar>
 
       <div className={styles.Home__Body}>
-        <LanguageDisplay languageCode="spanish" />
+        <LanguageDisplay
+          languageCode={langCode}
+          setLanguage={setLanguageCode}
+        />
         <Chat languageCode={langCode} />
       </div>
 

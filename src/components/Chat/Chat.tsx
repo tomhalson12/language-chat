@@ -22,7 +22,7 @@ export const Chat = ({ languageCode }: ChatProps) => {
         { isUserMessage: true, messages: [message] },
       ]
 
-      const botResponse = await sendMessage(newResponseSet)
+      const botResponse = await sendMessage(languageCode, newResponseSet)
 
       newResponseSet.push({
         isUserMessage: false,
@@ -30,7 +30,7 @@ export const Chat = ({ languageCode }: ChatProps) => {
       })
       setResponses(newResponseSet)
     },
-    [responses],
+    [languageCode, responses],
   )
 
   return (

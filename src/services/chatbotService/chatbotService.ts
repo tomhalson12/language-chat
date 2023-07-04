@@ -1,6 +1,6 @@
 "use server"
 
-import { ChatResponse } from "@/types"
+import { ChatResponse, LanguageCode } from "@/types"
 import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai"
 
 const configuration = new Configuration({
@@ -9,6 +9,7 @@ const configuration = new Configuration({
 const openai = new OpenAIApi(configuration)
 
 export const sendMessage = async (
+  languageCode: LanguageCode,
   responses: ChatResponse[],
 ): Promise<string[]> => {
   const chat: ChatCompletionRequestMessage[] = responses.reduce(
@@ -25,14 +26,13 @@ export const sendMessage = async (
     [],
   )
 
-  if (process.env.USE_CHAT) {
+  if (process.env.USE_CHAT === "true") {
     const completion = await openai.createChatCompletion({
       model: "gpt-3.5-turbo",
       messages: [
         {
           role: "system",
-          content:
-            "You are teaching me spanish, only reply in beginner level spanish",
+          content: `You are teaching me ${languageCode}, only reply in beginner level ${languageCode}`,
         },
         ...chat,
       ],

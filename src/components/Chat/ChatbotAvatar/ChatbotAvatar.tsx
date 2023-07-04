@@ -11,10 +11,12 @@ export const ChatbotAvatar = ({ languageCode }: ChatbotAvatarProps) => {
     switch (languageCode) {
       case "spanish":
         return "ES"
+      case "french":
+        return "FR"
       default:
-        return "LC"
+        return ""
     }
-  }, [])
+  }, [languageCode])
 
   return (
     <div

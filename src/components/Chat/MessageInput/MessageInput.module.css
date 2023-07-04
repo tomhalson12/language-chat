@@ -1,5 +1,5 @@
 .MessageInput {
-  padding: var(--midPadding);
+  padding: 16px;
   font-size: var(--smallText);
 
   border-radius: var(--borderRadius);
@@ -10,6 +10,8 @@
   background: var(--primaryColor1);
 
   width: 85%;
+
+  cursor: text;
 }
 
 .MessageInput__stretch {
