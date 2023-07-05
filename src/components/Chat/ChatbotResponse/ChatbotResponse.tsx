@@ -1,28 +1,22 @@
 import styles from "./ChatbotResponse.module.css"
 
-import { LanguageCode } from "@/types"
 import { ChatbotAvatar } from "../ChatbotAvatar"
 import { MessageBubble } from "../MessageBubble"
+import { useLanguage } from "@/components"
 
 type ChatbotResponseProps = {
-  languageCode: LanguageCode
   messages: string[]
 }
 
-export const ChatbotResponse = ({
-  languageCode,
-  messages,
-}: ChatbotResponseProps) => {
+export const ChatbotResponse = ({ messages }: ChatbotResponseProps) => {
+  const { language } = useLanguage()
+
   return (
     <div className={styles.ChatbotResponse}>
-      <ChatbotAvatar languageCode={languageCode} />
+      <ChatbotAvatar />
       <div className={styles.ChatbotResponse__Messages}>
         {messages.map((message, i) => (
-          <MessageBubble
-            key={i}
-            languageCode={languageCode}
-            message={message}
-          />
+          <MessageBubble language={language} key={i} message={message} />
         ))}
       </div>
     </div>

@@ -4,19 +4,16 @@ import { LanguageCode } from "@/types"
 
 type MessageBubbleProps = {
   message: string
-  languageCode?: LanguageCode
+  language?: LanguageCode
 }
 
-export const MessageBubble = ({
-  message,
-  languageCode,
-}: MessageBubbleProps) => {
+export const MessageBubble = ({ message, language }: MessageBubbleProps) => {
   return (
     <div
       className={classNames(styles.MessageBubble, {
-        [styles.MessageBubble__lang]: languageCode,
+        [styles.MessageBubble__lang]: language,
       })}
-      style={languageCode ? { background: `var(--${languageCode}Color)` } : {}}
+      style={language ? { background: `var(--${language}Color)` } : {}}
     >
       {message}
     </div>

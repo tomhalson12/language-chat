@@ -1,18 +1,16 @@
 // prettier-ignore
 "use client"
 
-import { ChatResponse, LanguageCode } from "@/types"
+import { ChatResponse } from "@/types"
 import styles from "./Chat.module.css"
 import { ChatThread } from "./ChatThread"
 import { MessageInput } from "./MessageInput"
 import React from "react"
 import { sendMessage } from "@/services/chatbotService"
+import { useLanguage } from "../LanguageProvider"
 
-type ChatProps = {
-  languageCode: LanguageCode
-}
-
-export const Chat = ({ languageCode }: ChatProps) => {
+export const Chat = () => {
+  const { language } = useLanguage()
   const [responses, setResponses] = React.useState<ChatResponse[]>([])
 
   const sendUserMessage = React.useCallback(
@@ -22,7 +20,7 @@ export const Chat = ({ languageCode }: ChatProps) => {
         { isUserMessage: true, messages: [message] },
       ]
 
-      const botResponse = await sendMessage(languageCode, newResponseSet)
+      const botResponse = await sendMessage(language, newResponseSet)
 
       newResponseSet.push({
         isUserMessage: false,
@@ -30,13 +28,13 @@ export const Chat = ({ languageCode }: ChatProps) => {
       })
       setResponses(newResponseSet)
     },
-    [languageCode, responses],
+    [language, responses],
   )
 
   return (
     <div className={styles.Chat}>
-      <ChatThread languageCode={languageCode} responses={responses} />
-      <MessageInput languageCode={languageCode} sendMessage={sendUserMessage} />
+      <ChatThread responses={responses} />
+      <MessageInput sendMessage={sendUserMessage} />
     </div>
   )
 }

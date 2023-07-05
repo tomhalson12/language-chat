@@ -2,20 +2,14 @@ import styles from "./LanguageDisplay.module.css"
 
 import ReactCountryFlag from "react-country-flag"
 import { LiaExchangeAltSolid } from "react-icons/lia"
-import { LanguageCode } from "@/types"
 import React from "react"
+import { useLanguage } from "../LanguageProvider"
 
-type LanguageDisplayProps = {
-  languageCode: LanguageCode
-  setLanguage: React.Dispatch<React.SetStateAction<LanguageCode>>
-}
+export const LanguageDisplay = () => {
+  const { language, setLanguage } = useLanguage()
 
-export const LanguageDisplay = ({
-  languageCode,
-  setLanguage,
-}: LanguageDisplayProps) => {
   const countryCode = React.useMemo(() => {
-    switch (languageCode) {
+    switch (language) {
       case "spanish":
         return "ES"
       case "french":
@@ -23,7 +17,7 @@ export const LanguageDisplay = ({
       default:
         return ""
     }
-  }, [languageCode])
+  }, [language])
 
   return (
     <div className={styles.LanguageDisplay}>
@@ -37,13 +31,13 @@ export const LanguageDisplay = ({
         style={{ cursor: "pointer" }}
         onClick={() => {
           // TODO: make this selectable
-          if (languageCode === "spanish") {
+          if (language === "spanish") {
             setLanguage("french")
           } else {
             setLanguage("spanish")
           }
         }}
-        color={`var(--${languageCode}Color)`}
+        color={`var(--${language}Color)`}
         size={30}
       />
     </div>

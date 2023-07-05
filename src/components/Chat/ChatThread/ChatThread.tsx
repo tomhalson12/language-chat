@@ -1,16 +1,17 @@
 import styles from "./ChatThread.module.css"
 
-import { ChatResponse, LanguageCode } from "@/types"
+import { ChatResponse } from "@/types"
 import React, { ReactNode } from "react"
 import { MessageBubble } from "../MessageBubble"
 import { ChatbotResponse } from "../ChatbotResponse"
+import { useLanguage } from "@/components"
 
 type ChatThreadProps = {
-  languageCode: LanguageCode
   responses: ChatResponse[]
 }
 
-export const ChatThread = ({ languageCode, responses }: ChatThreadProps) => {
+export const ChatThread = ({ responses }: ChatThreadProps) => {
+  const { language } = useLanguage()
   const thread = React.useMemo(
     () =>
       responses.reduce(
@@ -23,11 +24,7 @@ export const ChatThread = ({ languageCode, responses }: ChatThreadProps) => {
             )
           } else {
             acc.push(
-              <ChatbotResponse
-                key={index}
-                languageCode={languageCode}
-                messages={response.messages}
-              />,
+              <ChatbotResponse key={index} messages={response.messages} />,
             )
           }
 
@@ -35,7 +32,7 @@ export const ChatThread = ({ languageCode, responses }: ChatThreadProps) => {
         },
         [],
       ),
-    [responses, languageCode],
+    [responses, language],
   )
 
   const scrollDiv = React.useRef<null | HTMLDivElement>(null)

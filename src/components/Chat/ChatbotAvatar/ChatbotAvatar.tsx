@@ -1,14 +1,12 @@
-import { LanguageCode } from "@/types"
 import styles from "./ChatbotAvatar.module.css"
 import React from "react"
+import { useLanguage } from "@/components"
 
-type ChatbotAvatarProps = {
-  languageCode: LanguageCode
-}
+export const ChatbotAvatar = () => {
+  const { language } = useLanguage()
 
-export const ChatbotAvatar = ({ languageCode }: ChatbotAvatarProps) => {
   const name = React.useMemo(() => {
-    switch (languageCode) {
+    switch (language) {
       case "spanish":
         return "ES"
       case "french":
@@ -16,12 +14,12 @@ export const ChatbotAvatar = ({ languageCode }: ChatbotAvatarProps) => {
       default:
         return ""
     }
-  }, [languageCode])
+  }, [language])
 
   return (
     <div
       className={styles.ChatbotAvatar}
-      style={languageCode ? { background: `var(--${languageCode}Color)` } : {}}
+      style={language ? { background: `var(--${language}Color)` } : {}}
     >
       {name}
     </div>

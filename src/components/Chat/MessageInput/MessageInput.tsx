@@ -1,21 +1,18 @@
 // prettier-ignore
 "use client"
 
+import { useLanguage } from "@/components"
 import styles from "./MessageInput.module.css"
 
-import { LanguageCode } from "@/types"
 import React, { useRef } from "react"
 import { BiSolidSend } from "react-icons/bi"
 
 type MessageInputProps = {
-  languageCode: LanguageCode
   sendMessage: (msg: string) => Promise<void>
 }
 
-export const MessageInput = ({
-  languageCode,
-  sendMessage,
-}: MessageInputProps) => {
+export const MessageInput = ({ sendMessage }: MessageInputProps) => {
+  const { language } = useLanguage()
   const [value, setTextarea] = React.useState("")
 
   const onSendMessage = React.useCallback(async () => {
@@ -61,7 +58,7 @@ export const MessageInput = ({
         <BiSolidSend
           style={{ cursor: "pointer" }}
           onClick={onSendMessage}
-          color={`var(--${languageCode}Color)`}
+          color={`var(--${language}Color)`}
           size="30px"
         />
       </div>
