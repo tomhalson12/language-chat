@@ -1,17 +1,17 @@
+"use client"
+
 import styles from "./ChatThread.module.css"
 
 import { ChatResponse } from "@/types"
 import React, { ReactNode } from "react"
 import { MessageBubble } from "../MessageBubble"
 import { ChatbotResponse } from "../ChatbotResponse"
-import { useLanguage } from "@/components"
 
 type ChatThreadProps = {
   responses: ChatResponse[]
 }
 
 export const ChatThread = ({ responses }: ChatThreadProps) => {
-  const { language } = useLanguage()
   const thread = React.useMemo(
     () =>
       responses.reduce(
@@ -32,7 +32,7 @@ export const ChatThread = ({ responses }: ChatThreadProps) => {
         },
         [],
       ),
-    [responses, language],
+    [responses],
   )
 
   const scrollDiv = React.useRef<null | HTMLDivElement>(null)

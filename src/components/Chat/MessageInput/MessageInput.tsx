@@ -1,7 +1,7 @@
 // prettier-ignore
 "use client"
 
-import { useLanguage } from "@/components"
+import { useLanguage } from "@/components/LanguageProvider"
 import styles from "./MessageInput.module.css"
 
 import React, { useRef } from "react"

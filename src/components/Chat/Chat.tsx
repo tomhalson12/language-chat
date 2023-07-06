@@ -1,13 +1,13 @@
-// prettier-ignore
 "use client"
+import React from "react"
+
+import styles from "./Chat.module.css"
 
 import { ChatResponse } from "@/types"
-import styles from "./Chat.module.css"
 import { ChatThread } from "./ChatThread"
 import { MessageInput } from "./MessageInput"
-import React from "react"
-import { sendMessage } from "@/services/chatbotService"
 import { useLanguage } from "../LanguageProvider"
+import { sendMessage } from "@/services/chatbotService"
 
 export const Chat = () => {
   const { language } = useLanguage()

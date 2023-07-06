@@ -1,3 +1,5 @@
+"use client"
+
 import styles from "./LanguageDisplay.module.css"
 
 import ReactCountryFlag from "react-country-flag"
