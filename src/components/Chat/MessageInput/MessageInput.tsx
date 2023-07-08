@@ -26,7 +26,7 @@ export const MessageInput = ({ sendMessage }: MessageInputProps) => {
   }, [sendMessage, value])
 
   const onEnter = React.useCallback(
-    async (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
+    (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
       if (e.key === "Enter" && e.shiftKey == false) {
         e.preventDefault()
         onSendMessage()

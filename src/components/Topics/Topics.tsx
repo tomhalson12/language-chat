@@ -1,22 +1,59 @@
+"use client"
 import styles from "./Topics.module.css"
 
+import React from "react"
 import { Topic } from "./Topic"
-import { Sidebar } from "../Sidebar"
+import { getTopics } from "@/services/chatbotService"
 import { Icon } from "../Icon"
+import { Sidebar } from "../Sidebar"
 
-export const Topics = async () => {
-  const topics = ["Football", "Books", "Cooking", "Weather"]
+interface TopicsProps {
+  selectedTopic?: string
+  setTopic: React.Dispatch<React.SetStateAction<string | undefined>>
+}
+
+export const Topics = ({ selectedTopic, setTopic }: TopicsProps) => {
+  const [topics, setTopics] = React.useState<string[]>([])
+  const [iconSpin, setIconSpin] = React.useState(false)
+
+  const refreshTopics = React.useCallback(async () => {
+    setIconSpin(true)
+    const newTopics = await getTopics()
+
+    setTopic(undefined)
+    setTopics(newTopics)
+    setTimeout(() => {
+      setIconSpin(false)
+    }, 1000)
+  }, [])
+
+  React.useEffect(() => {
+    if (topics.length === 0) {
+      refreshTopics()
+    }
+  }, [])
 
   return (
     <Sidebar
       title="Topics"
       description="Start a conversation about..."
       dividerSide="right"
-      icon={<Icon name="refresh" />}
+      icon={
+        <Icon
+          className={iconSpin ? styles.Topics__RefreshIconSpin : ""}
+          onClick={refreshTopics}
+          name="refresh"
+        />
+      }
     >
       <div className={styles.Topics}>
         {topics.map((topic, i) => (
-          <Topic key={i} title={topic} />
+          <Topic
+            onClick={() => setTopic(topic)}
+            key={i}
+            title={topic}
+            selected={selectedTopic === topic}
+          />
         ))}
       </div>
     </Sidebar>

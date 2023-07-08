@@ -18,3 +18,13 @@
 
   cursor: pointer;
 }
+
+.Topic__selected {
+  color: var(--textDarkBg);
+}
+
+.Topic__selected:hover {
+  box-shadow: none;
+  border: none;
+  cursor: auto;
+}

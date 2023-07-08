@@ -19,7 +19,7 @@ export const SavedPhrases = () => {
       title="Saved Phrases"
       description="Download saved phrases to use in anki"
       dividerSide="left"
-      icon={<Icon name="refresh" />}
+      icon={<Icon name="export" />}
     >
       <div className={styles.SavedPhrases}>
         {savedPhrases.map((phrase, i) => (

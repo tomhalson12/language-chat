@@ -6,12 +6,37 @@ import styles from "./Chat.module.css"
 import { ChatResponse } from "@/types"
 import { ChatThread } from "./ChatThread"
 import { MessageInput } from "./MessageInput"
-import { useLanguage } from "../LanguageProvider"
-import { sendMessage } from "@/services/chatbotService"
 
-export const Chat = () => {
+import { sendMessage, startTopicConversation } from "@/services/chatbotService"
+import { useLanguage } from "../LanguageProvider"
+
+interface ChatProps {
+  topic?: string
+}
+
+export const Chat = ({ topic }: ChatProps) => {
   const { language } = useLanguage()
   const [responses, setResponses] = React.useState<ChatResponse[]>([])
+
+  React.useEffect(() => {
+    setResponses([])
+  }, [language, topic])
+
+  React.useEffect(() => {
+    const startTopicConvo = async () => {
+      if (topic) {
+        const botResponse = await startTopicConversation(language, topic)
+        setResponses([
+          {
+            isUserMessage: false,
+            messages: botResponse,
+          },
+        ])
+      }
+    }
+
+    startTopicConvo()
+  }, [topic])
 
   const sendUserMessage = React.useCallback(
     async (message: string) => {

@@ -2,11 +2,15 @@ import { Chat } from "../Chat"
 import { LanguageDisplay } from "../LanguageDisplay"
 import styles from "./MainContent.module.css"
 
-export const MainContent = () => {
+interface MainContentProps {
+  topic?: string
+}
+
+export const MainContent = ({ topic }: MainContentProps) => {
   return (
     <div className={styles.MainContent}>
       <LanguageDisplay />
-      <Chat />
+      <Chat topic={topic} />
     </div>
   )
 }

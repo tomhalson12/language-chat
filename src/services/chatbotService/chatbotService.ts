@@ -46,3 +46,52 @@ export const sendMessage = async (
 
   return ["this is a generic response that is for mocking purposes"]
 }
+
+export const startTopicConversation = async (
+  languageCode: LanguageCode,
+  topic: string,
+) => {
+  if (process.env.USE_CHAT === "true") {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: `You are teaching me ${languageCode}, only reply in beginner level ${languageCode}, start having a conversation about ${topic}`,
+        },
+      ],
+    })
+
+    console.log(completion)
+    // TODO: handle multiple bot responses
+    // TODO: handle tokens
+    return [completion.data.choices[0].message?.content || "no response"]
+  }
+
+  return [`starting a conversation about ${topic}`]
+}
+
+export const getTopics = async (): Promise<string[]> => {
+  if (process.env.USE_CHAT === "true") {
+    const completion = await openai.createChatCompletion({
+      model: "gpt-3.5-turbo",
+      messages: [
+        {
+          role: "system",
+          content: `give me 5 1-2 word topics of conversation, only return the words, separate each topic by a two hyphens`,
+        },
+      ],
+    })
+
+    console.log(completion)
+    // TODO: handle multiple bot responses
+    // TODO: handle tokens
+    return (
+      completion.data.choices[0].message?.content?.split("--") || [
+        "no response",
+      ]
+    )
+  }
+
+  return ["Football", "Books", "Cooking", "Music", "Clothes"]
+}
