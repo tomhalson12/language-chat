@@ -27,10 +27,13 @@ export default function Home() {
     [phrases],
   )
 
-  const deletePhraseByMessage = React.useCallback((msg: string) => {
-    const index = phrases.indexOf(msg)
-    deletePhrase(index)
-  }, [])
+  const deletePhraseByMessage = React.useCallback(
+    (msg: string) => {
+      const index = phrases.indexOf(msg)
+      deletePhrase(index)
+    },
+    [phrases],
+  )
 
   React.useEffect(() => {
     setTopic(undefined)

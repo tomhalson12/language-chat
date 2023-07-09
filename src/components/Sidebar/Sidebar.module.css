@@ -24,19 +24,56 @@
 }
 
 .Sidebar__Header {
-  margin-bottom: 20px;
+  /* margin-bottom: 20px; */
 }
 
 .Sidebar__Title {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  margin-bottom: 10px;
+  cursor: pointer;
+  padding-bottom: 10px;
 
   font-size: x-large;
   font-weight: bold;
 }
 
+.Sidebar__Chevron {
+  display: flex;
+  transition: transform 0.5s;
+}
+
+.Sidebar__OpenChevron {
+  transform: rotate(180deg);
+}
+
+.Sidebar__MainContent {
+  height: 0;
+  transition: height 1s;
+  overflow: hidden;
+}
+
+.Sidebar__MainContentOpen {
+  height: 100%;
+}
+
+.Sidebar__TitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.Sidebar__DescriptionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 12px;
+  margin-bottom: 12px;
+}
+
 .Sidebar__Description {
+  max-width: 65%;
   font-size: var(--smallText);
+}
+
+.Sidebar__MainContentChildren {
+  overflow-y: auto;
+  height: 90%;
 }
