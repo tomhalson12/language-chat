@@ -1,5 +1,12 @@
 .MessageBubble {
-  width: 66%;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+}
+
+.MessageBubble__Bubble {
   padding: var(--midPadding);
   font-size: var(--smallText);
 

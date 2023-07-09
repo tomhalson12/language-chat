@@ -30,7 +30,7 @@ export const LanguageDisplay = () => {
         svg={true}
       />
       <LiaExchangeAltSolid
-        style={{ cursor: "pointer" }}
+        style={{ cursor: "pointer", width: "30px", height: "30px" }}
         onClick={() => {
           // TODO: make this selectable
           if (language === "spanish") {
@@ -40,7 +40,6 @@ export const LanguageDisplay = () => {
           }
         }}
         color={`var(--${language}Color)`}
-        size={30}
       />
     </div>
   )

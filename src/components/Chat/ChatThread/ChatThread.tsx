@@ -6,12 +6,23 @@ import { ChatResponse } from "@/types"
 import React, { ReactNode } from "react"
 import { MessageBubble } from "../MessageBubble"
 import { ChatbotResponse } from "../ChatbotResponse"
+import { useLanguage } from "@/components/LanguageProvider"
 
 type ChatThreadProps = {
   responses: ChatResponse[]
+  savedPhrases: string[]
+  addPhrase: (phrase: string) => void
+  deletePhrase: (phrase: string) => void
 }
 
-export const ChatThread = ({ responses }: ChatThreadProps) => {
+export const ChatThread = ({
+  responses,
+  savedPhrases,
+  addPhrase,
+  deletePhrase,
+}: ChatThreadProps) => {
+  const { language } = useLanguage()
+
   const thread = React.useMemo(
     () =>
       responses.reduce(
@@ -19,12 +30,26 @@ export const ChatThread = ({ responses }: ChatThreadProps) => {
           if (response.isUserMessage) {
             acc.push(
               ...response.messages.map((message) => (
-                <MessageBubble key={index} message={message} />
+                <MessageBubble
+                  isSaved={savedPhrases.includes(message)}
+                  isUserMessage={true}
+                  language={language}
+                  onClick={() => addPhrase(message)}
+                  deletePhrase={deletePhrase}
+                  key={index}
+                  message={message}
+                />
               )),
             )
           } else {
             acc.push(
-              <ChatbotResponse key={index} messages={response.messages} />,
+              <ChatbotResponse
+                savedPhrases={savedPhrases}
+                addPhrase={addPhrase}
+                deletePhrase={deletePhrase}
+                key={index}
+                messages={response.messages}
+              />,
             )
           }
 
@@ -32,7 +57,7 @@ export const ChatThread = ({ responses }: ChatThreadProps) => {
         },
         [],
       ),
-    [responses],
+    [responses, addPhrase],
   )
 
   const scrollDiv = React.useRef<null | HTMLDivElement>(null)

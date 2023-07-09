@@ -12,9 +12,17 @@ import { useLanguage } from "../LanguageProvider"
 
 interface ChatProps {
   topic?: string
+  savedPhrases: string[]
+  addPhrase: (phrase: string) => void
+  deletePhrase: (phrase: string) => void
 }
 
-export const Chat = ({ topic }: ChatProps) => {
+export const Chat = ({
+  topic,
+  savedPhrases,
+  addPhrase,
+  deletePhrase,
+}: ChatProps) => {
   const { language } = useLanguage()
   const [responses, setResponses] = React.useState<ChatResponse[]>([])
 
@@ -58,7 +66,12 @@ export const Chat = ({ topic }: ChatProps) => {
 
   return (
     <div className={styles.Chat}>
-      <ChatThread responses={responses} />
+      <ChatThread
+        responses={responses}
+        savedPhrases={savedPhrases}
+        addPhrase={addPhrase}
+        deletePhrase={deletePhrase}
+      />
       <MessageInput sendMessage={sendUserMessage} />
     </div>
   )

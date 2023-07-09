@@ -1,4 +1,11 @@
+.SavedPhrase__Container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .SavedPhrase {
+  width: 100%;
   padding: 12px;
 
   border-radius: var(--borderRadius);
