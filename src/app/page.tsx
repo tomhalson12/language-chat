@@ -7,6 +7,7 @@ import { MainContent } from "@/components/MainContent"
 import React from "react"
 import { SavedPhrases } from "@/components/SavedPhrases"
 import { useLanguage } from "@/components/LanguageProvider"
+import { Sidebar } from "@/components/Sidebar"
 
 export default function Home() {
   const { language } = useLanguage()
@@ -41,14 +42,19 @@ export default function Home() {
 
   return (
     <div className={styles.Home}>
-      <Topics selectedTopic={topic} setTopic={setTopic} />
+      <Sidebar
+        selectedTopic={topic}
+        setTopic={setTopic}
+        phrases={phrases}
+        deletePhrase={deletePhrase}
+      />
+      <div className={styles.Home__Divider} />
       <MainContent
         topic={topic}
         savedPhrases={phrases}
         addPhrase={addPhrase}
         deletePhrase={deletePhraseByMessage}
       />
-      <SavedPhrases phrases={phrases} deletePhrase={deletePhrase} />
     </div>
   )
 }

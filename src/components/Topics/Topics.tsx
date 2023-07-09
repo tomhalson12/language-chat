@@ -5,7 +5,7 @@ import React from "react"
 import { Topic } from "./Topic"
 import { getTopics } from "@/services/chatbotService"
 import { Icon } from "../Icon"
-import { Sidebar } from "../Sidebar"
+import { SidebarOption } from "../SidebarOption"
 import { useLanguage } from "../LanguageProvider"
 
 interface TopicsProps {
@@ -36,10 +36,10 @@ export const Topics = ({ selectedTopic, setTopic }: TopicsProps) => {
   }, [language, topics])
 
   return (
-    <Sidebar
+    <SidebarOption
       title="Topics"
       description="Start a conversation about..."
-      dividerSide="right"
+      allowScroll={false}
       icon={
         <Icon
           className={iconSpin ? styles.Topics__RefreshIconSpin : ""}
@@ -58,6 +58,6 @@ export const Topics = ({ selectedTopic, setTopic }: TopicsProps) => {
           />
         ))}
       </div>
-    </Sidebar>
+    </SidebarOption>
   )
 }

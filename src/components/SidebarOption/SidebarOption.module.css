@@ -1,0 +1,49 @@
+.SidebarOption {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 350px;
+  justify-content: space-between;
+}
+
+.SidebarOption__TitleContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  cursor: pointer;
+
+  font-size: large;
+  font-weight: bold;
+  padding: 20px;
+}
+
+.SidebarOption__Chevron {
+  display: flex;
+  transition: transform 0.5s;
+  cursor: pointer;
+}
+
+.SidebarOption__ChevronOpen {
+  transform: rotate(180deg);
+}
+
+.SidebarOption__Content {
+  padding: 20px;
+  padding-top: 12px;
+}
+
+.SidebarOption__DescriptionContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.SidebarOption__Description {
+  max-width: 70%;
+  font-size: var(--smallText);
+}
+
+.SidebarOption__hidden {
+  overflow-y: hidden;
+}

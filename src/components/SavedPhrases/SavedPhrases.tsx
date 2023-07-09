@@ -1,7 +1,7 @@
 import styles from "./SavedPhrases.module.css"
 
 import { SavedPhrase } from "./SavedPhrase/SavedPhrase"
-import { Sidebar } from "../Sidebar"
+import { SidebarOption } from "../SidebarOption"
 import { Icon } from "../Icon"
 import React from "react"
 
@@ -26,10 +26,10 @@ export const SavedPhrases = ({ phrases, deletePhrase }: SavedPhrasesProps) => {
   }, [phrases])
 
   return (
-    <Sidebar
+    <SidebarOption
       title="Saved Phrases"
       description="Download saved phrases to use in anki"
-      dividerSide="left"
+      allowScroll={true}
       icon={<Icon onClick={downloadPhrases} name="export" />}
     >
       <div className={styles.SavedPhrases}>
@@ -41,6 +41,6 @@ export const SavedPhrases = ({ phrases, deletePhrase }: SavedPhrasesProps) => {
           />
         ))}
       </div>
-    </Sidebar>
+    </SidebarOption>
   )
 }
