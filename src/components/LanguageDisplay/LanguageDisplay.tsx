@@ -14,7 +14,6 @@ export const LanguageDisplay = () => {
 
   return (
     <div className={styles.LanguageDisplay}>
-      <span className={styles.LanguageDisplay__Title}>Language Chat</span>
       {language ? (
         <>
           <ReactCountryFlag
@@ -22,11 +21,13 @@ export const LanguageDisplay = () => {
             countryCode={languageCountryCode}
             svg={true}
           />
-          <LiaExchangeAltSolid
-            style={{ cursor: "pointer", minWidth: "30px", minHeight: "30px" }}
-            onClick={() => setLanguage(undefined)}
-            color={`var(--${language}Color)`}
-          />
+          <span className={styles.LanguageDisplay__ChangeIcon}>
+            <LiaExchangeAltSolid
+              style={{ cursor: "pointer", minWidth: "30px", minHeight: "30px" }}
+              onClick={() => setLanguage(undefined)}
+              color={`var(--${language}Color)`}
+            />
+          </span>
         </>
       ) : null}
       <Modal

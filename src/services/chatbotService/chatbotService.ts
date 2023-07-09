@@ -38,7 +38,6 @@ export const sendMessage = async (
       ],
     })
 
-    console.log(completion)
     // TODO: handle multiple bot responses
     // TODO: handle tokens
     return [completion.data.choices[0].message?.content || "no response"]
@@ -62,7 +61,6 @@ export const startTopicConversation = async (
       ],
     })
 
-    console.log(completion)
     // TODO: handle multiple bot responses
     // TODO: handle tokens
     return [completion.data.choices[0].message?.content || "no response"]
@@ -78,12 +76,11 @@ export const getTopics = async (): Promise<string[]> => {
       messages: [
         {
           role: "system",
-          content: `give me 5 1-2 word topics of conversation, only return the words, separate each topic by a two hyphens`,
+          content: `give me 5 1 word topics of conversation, only return the words, separate each topic by a two hyphens`,
         },
       ],
     })
 
-    console.log(completion)
     // TODO: handle multiple bot responses
     // TODO: handle tokens
     return (

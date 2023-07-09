@@ -19,9 +19,9 @@ export const Icon = ({ name, className, onClick }: IconProps) => {
   const icon = React.useMemo(() => {
     switch (name) {
       case "refresh":
-        return <IoIosRefresh color={`var(--${language}Color)`} size="30px" />
+        return <IoIosRefresh color={`var(--${language}Color)`} size="25px" />
       case "export":
-        return <GoDownload color={`var(--${language}Color)`} size="30px" />
+        return <GoDownload color={`var(--${language}Color)`} size="25px" />
       default:
         return <>X</>
     }

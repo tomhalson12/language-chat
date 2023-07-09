@@ -31,7 +31,7 @@
   cursor: pointer;
   padding-bottom: 10px;
 
-  font-size: x-large;
+  font-size: larger;
   font-weight: bold;
 }
 
@@ -69,7 +69,7 @@
 }
 
 .Sidebar__Description {
-  max-width: 65%;
+  max-width: 70%;
   font-size: var(--smallText);
 }
 

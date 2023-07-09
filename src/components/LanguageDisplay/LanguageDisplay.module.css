@@ -3,33 +3,41 @@
 
   display: flex;
   align-items: center;
-  justify-content: space-between;
+  justify-content: center;
 
   padding: 20px;
 
   gap: 20px;
 }
 
-.LanguageDisplay__Title {
-  font-weight: bold;
-  font-size: x-large;
+.LanguageDisplay__ChangeIcon {
+  cursor: pointer;
+  display: flex;
+  transition: transform 0.5s;
+}
+
+.LanguageDisplay__ChangeIcon:hover {
+  transform: rotate(180deg);
 }
 
 .LanguageDisplay__Flag,
 .LanguageDisplay__FlagLarge {
   width: fit-content !important;
-  border: 1px solid black;
+  outline: 1px solid black;
 }
 
 .LanguageDisplay__Flag {
   height: 50px !important;
-  margin-left: auto;
 }
 
 .LanguageDisplay__FlagLarge {
   height: 100px !important;
   margin: 16px;
   cursor: pointer;
+}
+
+.LanguageDisplay__FlagLarge:hover {
+  outline: 3px solid black;
 }
 
 .LanguageDisplay__Modal {
