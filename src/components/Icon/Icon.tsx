@@ -25,7 +25,7 @@ export const Icon = ({ name, className, onClick }: IconProps) => {
       default:
         return <>X</>
     }
-  }, [])
+  }, [language, name])
 
   return (
     <span style={style} className={className} onClick={onClick}>

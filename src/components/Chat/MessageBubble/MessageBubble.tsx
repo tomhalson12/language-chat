@@ -7,7 +7,7 @@ import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 type MessageBubbleProps = {
   message: string
-  language: LanguageCode
+  language?: LanguageCode
   isUserMessage: boolean
   onClick: () => void
   deletePhrase: (msg: string) => void
@@ -31,7 +31,7 @@ export const MessageBubble = ({
     <div className={styles.MessageBubble}>
       <div
         className={classNames(styles.MessageBubble__Bubble, {
-          [styles.MessageBubble__lang]: !isUserMessage,
+          [styles.MessageBubble__lang]: !isUserMessage && language,
         })}
         style={!isUserMessage ? { background: `var(--${language}Color)` } : {}}
       >

@@ -32,7 +32,7 @@ export const Chat = ({
 
   React.useEffect(() => {
     const startTopicConvo = async () => {
-      if (topic) {
+      if (topic && language) {
         const botResponse = await startTopicConversation(language, topic)
         setResponses([
           {
@@ -48,18 +48,20 @@ export const Chat = ({
 
   const sendUserMessage = React.useCallback(
     async (message: string) => {
-      const newResponseSet = [
-        ...responses,
-        { isUserMessage: true, messages: [message] },
-      ]
+      if (language) {
+        const newResponseSet = [
+          ...responses,
+          { isUserMessage: true, messages: [message] },
+        ]
 
-      const botResponse = await sendMessage(language, newResponseSet)
+        const botResponse = await sendMessage(language, newResponseSet)
 
-      newResponseSet.push({
-        isUserMessage: false,
-        messages: botResponse,
-      })
-      setResponses(newResponseSet)
+        newResponseSet.push({
+          isUserMessage: false,
+          messages: botResponse,
+        })
+        setResponses(newResponseSet)
+      }
     },
     [language, responses],
   )

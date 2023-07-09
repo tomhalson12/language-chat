@@ -17,9 +17,19 @@
   --midPadding: 20px;
 
   /* Language Accent Colors */
-  --languageColor: #9c2824;
   --spanishColor: #9c2824;
   --frenchColor: #0b2551;
+  --italianColor: #40904e;
+  --germanColor: #cb2c1d;
+  --portugueseColor: #2b6419;
+  --dutchColor: #2b4586;
+  --swedishColor: #f6cd45;
+  --ukrainianColor: #f9d949;
+  --turkishColor: #d03028;
+  --japaneseColor: #ac2333;
+  --koreanColor: #1b47ae;
+  --mandarinColor: #db3832;
+  /* --germanColor: #f7d146; */
   /* --spanishColor: #D82C21; */
 }
 

@@ -15,8 +15,39 @@
   font-size: x-large;
 }
 
-.LanguageDisplay__Flag {
+.LanguageDisplay__Flag,
+.LanguageDisplay__FlagLarge {
   width: fit-content !important;
+  border: 1px solid black;
+}
+
+.LanguageDisplay__Flag {
   height: 50px !important;
   margin-left: auto;
+}
+
+.LanguageDisplay__FlagLarge {
+  height: 100px !important;
+  margin: 16px;
+  cursor: pointer;
+}
+
+.LanguageDisplay__Modal {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  border: none;
+  outline: none;
+  font-size: xx-large;
+  font-weight: bold;
+}
+
+.LanguageDisplay__Modal__Flags {
+  max-width: 662px;
+  max-height: 395px;
+  overflow-y: auto;
 }

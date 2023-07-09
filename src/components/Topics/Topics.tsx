@@ -6,6 +6,7 @@ import { Topic } from "./Topic"
 import { getTopics } from "@/services/chatbotService"
 import { Icon } from "../Icon"
 import { Sidebar } from "../Sidebar"
+import { useLanguage } from "../LanguageProvider"
 
 interface TopicsProps {
   selectedTopic?: string
@@ -13,6 +14,7 @@ interface TopicsProps {
 }
 
 export const Topics = ({ selectedTopic, setTopic }: TopicsProps) => {
+  const { language } = useLanguage()
   const [topics, setTopics] = React.useState<string[]>([])
   const [iconSpin, setIconSpin] = React.useState(false)
 
@@ -28,10 +30,10 @@ export const Topics = ({ selectedTopic, setTopic }: TopicsProps) => {
   }, [])
 
   React.useEffect(() => {
-    if (topics.length === 0) {
+    if (topics.length === 0 && language) {
       refreshTopics()
     }
-  }, [])
+  }, [language, topics])
 
   return (
     <Sidebar
