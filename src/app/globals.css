@@ -7,12 +7,15 @@
 
   --background: white;
   --primaryColor1: #f6f6f6;
+  --borderColor: #dcdcdc;
+  --chevronColor: #808080;
+  --textDarkBg: #ffffff;
+  --boxShadowColor: rgba(0, 0, 0, 0.25);
+  --modalBackground: rgba(255, 255, 255, 0.8);
+  --flagBorder: black;
 
   --borderRadius: 5px;
-  --borderColor: #dcdcdc;
-
   --smallText: 14px;
-  --textDarkBg: #ffffff;
 
   --midPadding: 20px;
 
@@ -31,11 +34,26 @@
   --mandarinColor: #db3832;
 }
 
-/* @media (prefers-color-scheme: dark) {
+@media (prefers-color-scheme: dark) {
   :root {
-    --primaryColor1: #000000;
+    --background: #171717;
+    --primaryColor1: #1f1f1f;
+    --borderColor: #343434;
+    --textColor: white;
+    --boxShadowColor: rgba(100, 100, 100, 0.25);
+    --modalBackground: rgba(0, 0, 0, 0.8);
+    --flagBorder: #dedede;
+
+    /* Green dark theme */
+    /* --background: #0f2626;
+    --primaryColor1: #1b3c3c;
+    --borderColor: #174646;
+    --textColor: white;
+    --boxShadowColor: rgba(174, 174, 174, 0.25);
+    --modalBackground: rgba(15, 38, 38, 0.8);
+    --flagBorder: #dedede; */
   }
-} */
+}
 
 * {
   box-sizing: border-box;
@@ -47,10 +65,10 @@ html,
 body {
   max-width: 100vw;
   overflow-x: hidden;
+  background: var(--background);
 }
 
 body {
-  color: rgb(var(--background));
   height: 100vh;
 }
 

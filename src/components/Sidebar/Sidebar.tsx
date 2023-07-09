@@ -46,7 +46,7 @@ export const Sidebar = ({
                 [styles.Sidebar__OpenChevron]: open,
               })}
             >
-              <BsChevronDown color="#808080" />
+              <BsChevronDown color="var(--chevronColor)" />
             </span>
           </div>
         </div>

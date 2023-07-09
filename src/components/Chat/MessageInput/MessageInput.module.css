@@ -4,7 +4,7 @@
 
   border-radius: var(--borderRadius);
 
-  box-shadow: 2px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  box-shadow: 2px 4px 4px 0px var(--boxShadowColor);
 
   border: 1px solid var(--borderColor);
   background: var(--primaryColor1);
@@ -36,6 +36,7 @@
   font-size: inherit;
   resize: none;
   grid-area: 1 / 1 / 2 / 2;
+  color: var(--textColor);
 }
 
 .MessageInput__HiddenVal {

@@ -1,6 +1,8 @@
 .Home {
   display: flex;
   height: 100%;
+  background: var(--background);
+  color: var(--textColor);
 }
 
 .Home__Sidebar {

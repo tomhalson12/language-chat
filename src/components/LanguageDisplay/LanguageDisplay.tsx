@@ -33,7 +33,7 @@ export const LanguageDisplay = () => {
       <Modal
         isOpen={language === undefined}
         className={styles.LanguageDisplay__Modal}
-        style={{ overlay: { background: "rgba(255,255,255,0.8)" } }}
+        style={{ overlay: { background: "var(--modalBackground)" } }}
       >
         Choose a language
         <div className={styles.LanguageDisplay__Modal__Flags}>
