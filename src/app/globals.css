@@ -36,11 +36,11 @@
 
 @media (prefers-color-scheme: dark) {
   :root {
-    --background: #171717;
+    --background: #191919;
     --primaryColor1: #1f1f1f;
-    --borderColor: #343434;
+    --borderColor: #252525;
     --textColor: white;
-    --boxShadowColor: rgba(100, 100, 100, 0.25);
+    --boxShadowColor: rgba(0, 0, 0, 0.25);
     --modalBackground: rgba(0, 0, 0, 0.8);
     --flagBorder: #dedede;
 
@@ -49,7 +49,7 @@
     --primaryColor1: #1b3c3c;
     --borderColor: #174646;
     --textColor: white;
-    --boxShadowColor: rgba(174, 174, 174, 0.25);
+    --boxShadowColor: rgba(0, 0, 0, 0.35);
     --modalBackground: rgba(15, 38, 38, 0.8);
     --flagBorder: #dedede; */
   }
