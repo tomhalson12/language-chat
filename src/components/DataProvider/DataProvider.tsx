@@ -9,6 +9,10 @@ import {
   SavedPhrasesContext,
   buildSavedPhrasesContextValue,
 } from "./SavedPhrasesContext"
+import {
+  DifficultyContext,
+  buildDifficultyContextValue,
+} from "./DifficultyContext"
 
 interface DataProviderProps {
   children: ReactNode
@@ -19,6 +23,7 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     language: undefined,
     selectedTopic: undefined,
     savedPhrases: [],
+    difficulty: "beginner",
   })
 
   const languageContext = React.useMemo(
@@ -36,13 +41,20 @@ export const DataProvider = ({ children }: DataProviderProps) => {
     [state.savedPhrases, dispatch],
   )
 
+  const difficultyContext = React.useMemo(
+    () => buildDifficultyContextValue(state.difficulty, dispatch),
+    [state.difficulty, dispatch],
+  )
+
   return (
     <LanguageContext.Provider value={languageContext}>
-      <TopicContext.Provider value={topicContext}>
-        <SavedPhrasesContext.Provider value={savedPhrasesContext}>
-          {children}
-        </SavedPhrasesContext.Provider>
-      </TopicContext.Provider>
+      <DifficultyContext.Provider value={difficultyContext}>
+        <TopicContext.Provider value={topicContext}>
+          <SavedPhrasesContext.Provider value={savedPhrasesContext}>
+            {children}
+          </SavedPhrasesContext.Provider>
+        </TopicContext.Provider>
+      </DifficultyContext.Provider>
     </LanguageContext.Provider>
   )
 }

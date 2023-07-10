@@ -8,11 +8,12 @@ import { ChatThread } from "./ChatThread"
 import { MessageInput } from "./MessageInput"
 
 import { sendMessage, startTopicConversation } from "@/services/chatbotService"
-import { useLanguage, useTopic } from "../DataProvider"
+import { useDifficulty, useLanguage, useTopic } from "../DataProvider"
 
 export const Chat = () => {
   const { language } = useLanguage()
   const { selectedTopic } = useTopic()
+  const { difficulty } = useDifficulty()
   const [responses, setResponses] = React.useState<ChatResponse[]>([])
   const [isPending, startTransition] = useTransition()
 
@@ -26,6 +27,7 @@ export const Chat = () => {
         if (selectedTopic && language) {
           const botResponse = await startTopicConversation(
             language,
+            difficulty,
             selectedTopic,
           )
           setResponses([
@@ -52,7 +54,11 @@ export const Chat = () => {
         setResponses(newResponseSet)
 
         startTransition(async () => {
-          const botResponse = await sendMessage(language, newResponseSet)
+          const botResponse = await sendMessage(
+            language,
+            difficulty,
+            newResponseSet,
+          )
 
           newResponseSet.push({
             isUserMessage: false,

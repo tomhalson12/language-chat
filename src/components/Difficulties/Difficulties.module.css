@@ -1,0 +1,31 @@
+.Difficulties {
+  padding: 20px;
+  display: flex;
+  justify-content: space-around;
+}
+
+.Difficulties__Option {
+  cursor: pointer;
+
+  background: var(--primaryColor1);
+  border-radius: var(--borderRadius);
+  border: 1px solid var(--borderColor);
+
+  padding: 15px;
+
+  font-size: small;
+  text-transform: capitalize;
+}
+
+.Difficulties__Option:hover {
+  box-shadow: 2px 4px 4px 0px var(--boxShadowColor);
+}
+
+.Difficulties__OptionSelected {
+  color: var(--textDarkBg);
+}
+
+.Difficulties__OptionSelected:hover {
+  box-shadow: none;
+  cursor: auto;
+}

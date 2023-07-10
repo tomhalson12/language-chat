@@ -19,3 +19,7 @@ export type ChatResponse = {
   isUserMessage: boolean
   messages: string[]
 }
+
+export const difficulties = ["beginner", "medium", "advanced"] as const
+
+export type Difficulty = (typeof difficulties)[number]

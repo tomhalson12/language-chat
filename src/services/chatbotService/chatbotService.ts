@@ -1,6 +1,6 @@
 "use server"
 
-import { ChatResponse, LanguageCode } from "@/types"
+import { ChatResponse, Difficulty, LanguageCode } from "@/types"
 import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai"
 
 const configuration = new Configuration({
@@ -10,6 +10,7 @@ const openai = new OpenAIApi(configuration)
 
 export const sendMessage = async (
   languageCode: LanguageCode,
+  difficulty: Difficulty,
   responses: ChatResponse[],
 ): Promise<string[]> => {
   const chat: ChatCompletionRequestMessage[] = responses.reduce(
@@ -32,7 +33,7 @@ export const sendMessage = async (
       messages: [
         {
           role: "system",
-          content: `You are teaching me ${languageCode}, only reply in beginner level ${languageCode}`,
+          content: `You are teaching me ${languageCode}, only reply in ${difficulty} level ${languageCode}`,
         },
         ...chat,
       ],
@@ -48,6 +49,7 @@ export const sendMessage = async (
 
 export const startTopicConversation = async (
   languageCode: LanguageCode,
+  difficulty: Difficulty,
   topic: string,
 ) => {
   if (process.env.USE_CHAT === "true") {
@@ -56,7 +58,7 @@ export const startTopicConversation = async (
       messages: [
         {
           role: "system",
-          content: `You are teaching me ${languageCode}, only reply in beginner level ${languageCode}, start having a conversation about ${topic}`,
+          content: `You are teaching me ${languageCode}, only reply in ${difficulty} level ${languageCode}, start having a conversation about ${topic}`,
         },
       ],
     })

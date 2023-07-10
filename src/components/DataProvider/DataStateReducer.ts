@@ -1,9 +1,10 @@
-import { LanguageCode } from "@/types"
+import { Difficulty, LanguageCode } from "@/types"
 
 export interface DataState {
   language: LanguageCode | undefined
   selectedTopic: string | undefined
   savedPhrases: string[]
+  difficulty: Difficulty
 }
 
 interface SetLanguageAction {
@@ -31,12 +32,18 @@ interface DeletePhraseByContent {
   phrase: string
 }
 
+interface SetDifficulty {
+  type: "setDifficulty"
+  difficulty: Difficulty
+}
+
 export type Action =
   | SetLanguageAction
   | SetTopicAction
   | AddPhraseAction
   | DeletePhraseByIndex
   | DeletePhraseByContent
+  | SetDifficulty
 
 const setLanguage = (
   state: DataState,
@@ -76,6 +83,14 @@ const deletePhraseByContent = (state: DataState, phrase: string): DataState => {
   return deletePhraseByIndex(state, index)
 }
 
+const setDifficulty = (
+  state: DataState,
+  difficulty: Difficulty,
+): DataState => ({
+  ...state,
+  difficulty,
+})
+
 export const dataStateReducer = (
   state: DataState,
   action: Action,
@@ -91,6 +106,8 @@ export const dataStateReducer = (
       return deletePhraseByIndex(state, action.index)
     case "deletePhraseByContent":
       return deletePhraseByContent(state, action.phrase)
+    case "setDifficulty":
+      return setDifficulty(state, action.difficulty)
     default:
       return state
   }
