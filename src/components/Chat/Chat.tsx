@@ -1,5 +1,5 @@
 "use client"
-import React from "react"
+import React, { useTransition } from "react"
 
 import styles from "./Chat.module.css"
 
@@ -14,28 +14,31 @@ export const Chat = () => {
   const { language } = useLanguage()
   const { selectedTopic } = useTopic()
   const [responses, setResponses] = React.useState<ChatResponse[]>([])
+  const [isPending, startTransition] = useTransition()
 
   React.useEffect(() => {
     setResponses([])
   }, [language, selectedTopic])
 
   React.useEffect(() => {
-    const startTopicConvo = async () => {
-      if (selectedTopic && language) {
-        const botResponse = await startTopicConversation(
-          language,
-          selectedTopic,
-        )
-        setResponses([
-          {
-            isUserMessage: false,
-            messages: botResponse,
-          },
-        ])
+    startTransition(() => {
+      const startTopicConvo = async () => {
+        if (selectedTopic && language) {
+          const botResponse = await startTopicConversation(
+            language,
+            selectedTopic,
+          )
+          setResponses([
+            {
+              isUserMessage: false,
+              messages: botResponse,
+            },
+          ])
+        }
       }
-    }
 
-    startTopicConvo()
+      startTopicConvo()
+    })
   }, [selectedTopic])
 
   const sendUserMessage = React.useCallback(
@@ -46,13 +49,17 @@ export const Chat = () => {
           { isUserMessage: true, messages: [message] },
         ]
 
-        const botResponse = await sendMessage(language, newResponseSet)
-
-        newResponseSet.push({
-          isUserMessage: false,
-          messages: botResponse,
-        })
         setResponses(newResponseSet)
+
+        startTransition(async () => {
+          const botResponse = await sendMessage(language, newResponseSet)
+
+          newResponseSet.push({
+            isUserMessage: false,
+            messages: botResponse,
+          })
+          setResponses(newResponseSet)
+        })
       }
     },
     [language, responses],
@@ -60,8 +67,8 @@ export const Chat = () => {
 
   return (
     <div className={styles.Chat}>
-      <ChatThread responses={responses} />
-      <MessageInput sendMessage={sendUserMessage} />
+      <ChatThread responses={responses} waitingForChatbot={isPending} />
+      <MessageInput sendMessage={sendUserMessage} disabled={isPending} />
     </div>
   )
 }

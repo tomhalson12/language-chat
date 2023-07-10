@@ -37,8 +37,9 @@ export const LanguageDisplay = () => {
       >
         Choose a language
         <div className={styles.LanguageDisplay__Modal__Flags}>
-          {languages.map((lang) => (
+          {languages.map((lang, i) => (
             <ReactCountryFlag
+              key={i}
               className={styles.LanguageDisplay__FlagLarge}
               onClick={() => setLanguage(lang)}
               countryCode={getCountryCode(lang)}

@@ -9,9 +9,10 @@ import { BiSolidSend } from "react-icons/bi"
 
 type MessageInputProps = {
   sendMessage: (msg: string) => Promise<void>
+  disabled: boolean
 }
 
-export const MessageInput = ({ sendMessage }: MessageInputProps) => {
+export const MessageInput = ({ sendMessage, disabled }: MessageInputProps) => {
   const { language } = useLanguage()
   const [value, setTextarea] = React.useState("")
 
@@ -45,6 +46,7 @@ export const MessageInput = ({ sendMessage }: MessageInputProps) => {
       <div className={styles.MessageInput__Wrapper}>
         <div className={styles.MessageInput__stretch}>
           <textarea
+            disabled={disabled}
             ref={textAreaRef}
             placeholder="Send a message..."
             className={styles.MessageInput__Input}

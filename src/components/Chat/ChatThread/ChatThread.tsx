@@ -10,15 +10,25 @@ import { useLanguage, useSavedPhrases } from "@/components/DataProvider"
 
 type ChatThreadProps = {
   responses: ChatResponse[]
+  waitingForChatbot: boolean
 }
 
-export const ChatThread = ({ responses }: ChatThreadProps) => {
+export const ChatThread = ({
+  responses,
+  waitingForChatbot,
+}: ChatThreadProps) => {
   const { language } = useLanguage()
   const { savedPhrases, addPhrase, deletePhraseByContent } = useSavedPhrases()
 
-  const thread = React.useMemo(
-    () =>
-      responses.reduce(
+  const scrollDiv = React.useRef<null | HTMLDivElement>(null)
+
+  React.useEffect(() => {
+    scrollDiv.current?.scrollIntoView({ behavior: "smooth" })
+  }, [responses, waitingForChatbot])
+
+  return (
+    <div className={styles.ChatThread}>
+      {responses.reduce(
         (acc: ReactNode[], response: ChatResponse, index: number) => {
           if (response.isUserMessage) {
             acc.push(
@@ -49,20 +59,22 @@ export const ChatThread = ({ responses }: ChatThreadProps) => {
           return acc
         },
         [],
-      ),
-    [responses, addPhrase],
-  )
-
-  const scrollDiv = React.useRef<null | HTMLDivElement>(null)
-
-  React.useEffect(() => {
-    scrollDiv.current?.scrollIntoView({ behavior: "smooth" })
-  }, [responses])
-
-  return (
-    <div className={styles.ChatThread}>
-      {thread}
+      )}
       <div ref={scrollDiv} />
+      {waitingForChatbot ? (
+        <div className={styles.ChatThread__Loading}>
+          {[...Array(3)].map((_, i) => (
+            <div
+              key={i}
+              className={styles.ChatThread__LoadingDot}
+              style={{
+                background: `var(--${language}Color)`,
+                animationDelay: `${i * 0.2}s`,
+              }}
+            />
+          ))}
+        </div>
+      ) : null}
     </div>
   )
 }
