@@ -6,22 +6,15 @@ import { ChatResponse } from "@/types"
 import React, { ReactNode } from "react"
 import { MessageBubble } from "../MessageBubble"
 import { ChatbotResponse } from "../ChatbotResponse"
-import { useLanguage } from "@/components/LanguageProvider"
+import { useLanguage, useSavedPhrases } from "@/components/DataProvider"
 
 type ChatThreadProps = {
   responses: ChatResponse[]
-  savedPhrases: string[]
-  addPhrase: (phrase: string) => void
-  deletePhrase: (phrase: string) => void
 }
 
-export const ChatThread = ({
-  responses,
-  savedPhrases,
-  addPhrase,
-  deletePhrase,
-}: ChatThreadProps) => {
+export const ChatThread = ({ responses }: ChatThreadProps) => {
   const { language } = useLanguage()
+  const { savedPhrases, addPhrase, deletePhraseByContent } = useSavedPhrases()
 
   const thread = React.useMemo(
     () =>
@@ -35,7 +28,7 @@ export const ChatThread = ({
                   isUserMessage={true}
                   language={language}
                   onClick={() => addPhrase(message)}
-                  deletePhrase={deletePhrase}
+                  deletePhrase={deletePhraseByContent}
                   key={index}
                   message={message}
                 />
@@ -46,7 +39,7 @@ export const ChatThread = ({
               <ChatbotResponse
                 savedPhrases={savedPhrases}
                 addPhrase={addPhrase}
-                deletePhrase={deletePhrase}
+                deletePhrase={deletePhraseByContent}
                 key={index}
                 messages={response.messages}
               />,

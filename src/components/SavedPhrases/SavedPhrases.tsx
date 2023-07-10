@@ -4,13 +4,11 @@ import { SavedPhrase } from "./SavedPhrase/SavedPhrase"
 import { SidebarOption } from "../SidebarOption"
 import { Icon } from "../Icon"
 import React from "react"
+import { useSavedPhrases } from "../DataProvider"
 
-interface SavedPhrasesProps {
-  phrases: string[]
-  deletePhrase: (index: number) => void
-}
+export const SavedPhrases = () => {
+  const { savedPhrases: phrases, deletePhraseByIndex } = useSavedPhrases()
 
-export const SavedPhrases = ({ phrases, deletePhrase }: SavedPhrasesProps) => {
   const downloadPhrases = React.useCallback(async () => {
     const element = document.createElement("a")
     const file = new Blob(
@@ -35,7 +33,7 @@ export const SavedPhrases = ({ phrases, deletePhrase }: SavedPhrasesProps) => {
       <div className={styles.SavedPhrases}>
         {phrases.map((phrase, i) => (
           <SavedPhrase
-            onClick={() => deletePhrase(i)}
+            onClick={() => deletePhraseByIndex(i)}
             key={i}
             phrase={phrase}
           />

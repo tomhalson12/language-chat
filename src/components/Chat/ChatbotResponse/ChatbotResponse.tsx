@@ -2,7 +2,7 @@ import styles from "./ChatbotResponse.module.css"
 
 import { ChatbotAvatar } from "../ChatbotAvatar"
 import { MessageBubble } from "../MessageBubble"
-import { useLanguage } from "@/components/LanguageProvider"
+import { useLanguage } from "@/components/DataProvider"
 
 type ChatbotResponseProps = {
   messages: string[]

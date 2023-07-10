@@ -1,6 +1,6 @@
 import styles from "./ChatbotAvatar.module.css"
 import React from "react"
-import { useLanguage } from "@/components/LanguageProvider"
+import { useLanguage } from "@/components/DataProvider"
 
 export const ChatbotAvatar = () => {
   const { language, languageCountryCode } = useLanguage()

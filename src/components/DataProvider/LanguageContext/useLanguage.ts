@@ -1,10 +1,10 @@
 import React from "react"
-import { LanguageContext } from "./LanguageProvider"
+import { LanguageContext } from "./LanguageContext"
 
 export const useLanguage = () => {
   const context = React.useContext(LanguageContext)
   if (context === undefined) {
-    throw new Error("useCount must be used within a CountProvider")
+    throw new Error("useLanguage must be used within a LanguageProvider")
   }
   return context
 }

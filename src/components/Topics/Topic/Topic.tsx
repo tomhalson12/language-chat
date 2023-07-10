@@ -4,7 +4,7 @@ import { BsArrowRight } from "react-icons/bs"
 
 import styles from "./Topic.module.css"
 import classNames from "classnames"
-import { useLanguage } from "@/components/LanguageProvider"
+import { useLanguage } from "@/components/DataProvider"
 import React from "react"
 
 type TopicProps = {

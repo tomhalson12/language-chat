@@ -5,7 +5,7 @@ import styles from "./LanguageDisplay.module.css"
 import ReactCountryFlag from "react-country-flag"
 import { LiaExchangeAltSolid } from "react-icons/lia"
 import React from "react"
-import { getCountryCode, useLanguage } from "../LanguageProvider"
+import { getCountryCode, useLanguage } from "../DataProvider"
 import Modal from "react-modal"
 import { languages } from "@/types"
 

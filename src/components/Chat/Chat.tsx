@@ -8,32 +8,24 @@ import { ChatThread } from "./ChatThread"
 import { MessageInput } from "./MessageInput"
 
 import { sendMessage, startTopicConversation } from "@/services/chatbotService"
-import { useLanguage } from "../LanguageProvider"
+import { useLanguage, useTopic } from "../DataProvider"
 
-interface ChatProps {
-  topic?: string
-  savedPhrases: string[]
-  addPhrase: (phrase: string) => void
-  deletePhrase: (phrase: string) => void
-}
-
-export const Chat = ({
-  topic,
-  savedPhrases,
-  addPhrase,
-  deletePhrase,
-}: ChatProps) => {
+export const Chat = () => {
   const { language } = useLanguage()
+  const { selectedTopic } = useTopic()
   const [responses, setResponses] = React.useState<ChatResponse[]>([])
 
   React.useEffect(() => {
     setResponses([])
-  }, [language, topic])
+  }, [language, selectedTopic])
 
   React.useEffect(() => {
     const startTopicConvo = async () => {
-      if (topic && language) {
-        const botResponse = await startTopicConversation(language, topic)
+      if (selectedTopic && language) {
+        const botResponse = await startTopicConversation(
+          language,
+          selectedTopic,
+        )
         setResponses([
           {
             isUserMessage: false,
@@ -44,7 +36,7 @@ export const Chat = ({
     }
 
     startTopicConvo()
-  }, [topic])
+  }, [selectedTopic])
 
   const sendUserMessage = React.useCallback(
     async (message: string) => {
@@ -68,12 +60,7 @@ export const Chat = ({
 
   return (
     <div className={styles.Chat}>
-      <ChatThread
-        responses={responses}
-        savedPhrases={savedPhrases}
-        addPhrase={addPhrase}
-        deletePhrase={deletePhrase}
-      />
+      <ChatThread responses={responses} />
       <MessageInput sendMessage={sendUserMessage} />
     </div>
   )

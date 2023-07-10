@@ -6,15 +6,12 @@ import { Topic } from "./Topic"
 import { getTopics } from "@/services/chatbotService"
 import { Icon } from "../Icon"
 import { SidebarOption } from "../SidebarOption"
-import { useLanguage } from "../LanguageProvider"
+import { useLanguage, useTopic } from "../DataProvider"
 
-interface TopicsProps {
-  selectedTopic?: string
-  setTopic: React.Dispatch<React.SetStateAction<string | undefined>>
-}
-
-export const Topics = ({ selectedTopic, setTopic }: TopicsProps) => {
+export const Topics = () => {
+  const { selectedTopic, setTopic } = useTopic()
   const { language } = useLanguage()
+
   const [topics, setTopics] = React.useState<string[]>([])
   const [iconSpin, setIconSpin] = React.useState(false)
 

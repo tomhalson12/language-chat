@@ -1,7 +1,7 @@
 "use client"
 
 import { IoIosRefresh } from "react-icons/io"
-import { useLanguage } from "../LanguageProvider"
+import { useLanguage } from "../DataProvider"
 import { GoDownload } from "react-icons/go"
 import React from "react"
 
