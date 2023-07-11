@@ -1,13 +1,13 @@
 import classNames from "classnames"
 import styles from "./MessageBubble.module.css"
-import { LanguageCode } from "@/types"
+import { Language } from "@/types"
 import React from "react"
 
 import { AiFillStar, AiOutlineStar } from "react-icons/ai"
 
 type MessageBubbleProps = {
   message: string
-  language?: LanguageCode
+  language?: Language
   isUserMessage: boolean
   onClick: () => void
   deletePhrase: (msg: string) => void

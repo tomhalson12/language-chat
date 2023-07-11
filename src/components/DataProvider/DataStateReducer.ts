@@ -1,7 +1,7 @@
-import { Difficulty, LanguageCode } from "@/types"
+import { Difficulty, Language } from "@/types"
 
 export interface DataState {
-  language: LanguageCode | undefined
+  language: Language | undefined
   selectedTopic: string | undefined
   savedPhrases: string[]
   difficulty: Difficulty
@@ -9,7 +9,7 @@ export interface DataState {
 
 interface SetLanguageAction {
   type: "setLanguage"
-  language: LanguageCode | undefined
+  language: Language | undefined
 }
 
 interface SetTopicAction {
@@ -47,7 +47,7 @@ export type Action =
 
 const setLanguage = (
   state: DataState,
-  language: LanguageCode | undefined,
+  language: Language | undefined,
 ): DataState => ({
   ...state,
   language,

@@ -1,16 +1,16 @@
 "use client"
 
-import { LanguageCode } from "@/types"
+import { Language } from "@/types"
 import React from "react"
 import { Action } from "../DataStateReducer"
 
 interface LanguageContext {
-  language: LanguageCode | undefined
+  language: Language | undefined
   languageCountryCode: string
-  setLanguage: (language: LanguageCode | undefined) => void
+  setLanguage: (language: Language | undefined) => void
 }
 
-export const getCountryCode = (language: LanguageCode) => {
+export const getCountryCode = (language: Language) => {
   switch (language) {
     case "spanish":
       return "ES"
@@ -42,12 +42,12 @@ export const getCountryCode = (language: LanguageCode) => {
 }
 
 export const buildLanguageContextValue = (
-  currentLang: LanguageCode | undefined,
+  currentLang: Language | undefined,
   dispatch: React.Dispatch<Action>,
 ): LanguageContext => ({
   language: currentLang,
   languageCountryCode: currentLang ? getCountryCode(currentLang) : "",
-  setLanguage: (language: LanguageCode | undefined) =>
+  setLanguage: (language: Language | undefined) =>
     dispatch({ type: "setLanguage", language }),
 })
 

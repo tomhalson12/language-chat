@@ -1,96 +1,103 @@
 "use server"
 
-import { ChatResponse, Difficulty, LanguageCode } from "@/types"
-import { Configuration, OpenAIApi, ChatCompletionRequestMessage } from "openai"
+import { ChatResponse, Difficulty, Language } from "@/types"
+import {
+  Configuration,
+  OpenAIApi,
+  ChatCompletionRequestMessage,
+  CreateChatCompletionResponse,
+} from "openai"
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,
 })
 const openai = new OpenAIApi(configuration)
 
-export const sendMessage = async (
-  languageCode: LanguageCode,
-  difficulty: Difficulty,
-  responses: ChatResponse[],
-): Promise<string[]> => {
-  const chat: ChatCompletionRequestMessage[] = responses.reduce(
-    (acc: ChatCompletionRequestMessage[], response: ChatResponse) => {
-      response.messages.forEach((message) => {
-        acc.push({
-          role: response.isUserMessage ? "user" : "assistant",
-          content: message,
-        })
-      })
+const MODEL = process.env.OPENAI_MODEL || "none"
+const USE_MODEL = process.env.USE_CHAT === "true"
 
-      return acc
-    },
-    [],
+const getPrompt = (
+  language: Language,
+  difficulty: Difficulty,
+  extra?: string,
+) =>
+  `You are teaching me ${language}, only reply in ${difficulty} level ${language}${extra}`
+
+const performChatCompletion = async (
+  initialPrompt: string,
+  responses: ChatResponse[],
+  messageProcessor?: (
+    completion: CreateChatCompletionResponse["choices"],
+  ) => string[],
+) => {
+  let tokensCount = 0
+  const chat: ChatCompletionRequestMessage[] = []
+
+  responses.reverse().every((response) =>
+    response.messages.reverse().every((message) => {
+      tokensCount += message.length / 2
+
+      if (tokensCount > 3500) {
+        return false
+      }
+
+      chat.push({
+        role: response.isUserMessage ? "user" : "assistant",
+        content: message,
+      })
+      return true
+    }),
   )
 
-  if (process.env.USE_CHAT === "true") {
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: `You are teaching me ${languageCode}, only reply in ${difficulty} level ${languageCode}`,
-        },
-        ...chat,
-      ],
-    })
+  const completion = await openai.createChatCompletion({
+    model: MODEL,
+    messages: [
+      {
+        role: "system",
+        content: initialPrompt,
+      },
+      ...chat.reverse(),
+    ],
+  })
 
-    // TODO: handle multiple bot responses
-    // TODO: handle tokens
-    return [completion.data.choices[0].message?.content || "no response"]
-  }
-
-  return ["this is a generic response that is for mocking purposes"]
+  return messageProcessor
+    ? messageProcessor(completion.data.choices)
+    : completion.data.choices.map(
+        (choice) => choice.message?.content || "no response",
+      )
 }
+
+export const sendMessage = async (
+  language: Language,
+  difficulty: Difficulty,
+  responses: ChatResponse[],
+): Promise<string[]> =>
+  USE_MODEL
+    ? performChatCompletion(getPrompt(language, difficulty), responses)
+    : ["this is a generic response that is for mocking purposes"]
 
 export const startTopicConversation = async (
-  languageCode: LanguageCode,
+  language: Language,
   difficulty: Difficulty,
   topic: string,
-) => {
-  if (process.env.USE_CHAT === "true") {
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: `You are teaching me ${languageCode}, only reply in ${difficulty} level ${languageCode}, start having a conversation about ${topic}`,
-        },
-      ],
-    })
+) =>
+  USE_MODEL
+    ? performChatCompletion(
+        getPrompt(
+          language,
+          difficulty,
+          `, start having a conversation about ${topic}`,
+        ),
+        [],
+      )
+    : [`this is a mocked response, starting a conversation about ${topic}`]
 
-    // TODO: handle multiple bot responses
-    // TODO: handle tokens
-    return [completion.data.choices[0].message?.content || "no response"]
-  }
-
-  return [`starting a conversation about ${topic}`]
-}
-
-export const getTopics = async (): Promise<string[]> => {
-  if (process.env.USE_CHAT === "true") {
-    const completion = await openai.createChatCompletion({
-      model: "gpt-3.5-turbo",
-      messages: [
-        {
-          role: "system",
-          content: `give me 5 1 word topics of conversation, only return the words, separate each topic by a two hyphens`,
-        },
-      ],
-    })
-
-    // TODO: handle multiple bot responses
-    // TODO: handle tokens
-    return (
-      completion.data.choices[0].message?.content?.split("--") || [
-        "no response",
-      ]
-    )
-  }
-
-  return ["Football", "Books", "Cooking", "Music", "Clothes"]
-}
+export const getTopics = async (): Promise<string[]> =>
+  USE_MODEL
+    ? performChatCompletion(
+        "give me 5 1 word topics of conversation, only return the words, separate each topic by a two hyphens",
+        [],
+        (choices) =>
+          choices[0].message?.content?.split("--") || ["no response"],
+      )
+    : ["Football", "Books", "Cooking", "Music", "Clothes"]

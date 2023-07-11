@@ -13,7 +13,7 @@ export const languages = [
   "mandarin",
 ] as const
 
-export type LanguageCode = (typeof languages)[number]
+export type Language = (typeof languages)[number]
 
 export type ChatResponse = {
   isUserMessage: boolean
