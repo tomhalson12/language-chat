@@ -1,7 +1,7 @@
 .Topic {
   display: flex;
   justify-content: space-between;
-  background-color: var(--primaryColor1);
+  background-color: var(--borderColor);
 
   padding: 12px;
 
@@ -13,7 +13,7 @@
 }
 
 .Topic:hover {
-  border: 1px solid var(--borderColor);
+  border: 1px solid var(--chevronColor);
 
   cursor: pointer;
 }
@@ -23,6 +23,6 @@
 }
 
 .Topic__selected:hover {
-  border: none;
+  border-color: transparent;
   cursor: auto;
 }

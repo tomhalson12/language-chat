@@ -7,7 +7,7 @@
 .Difficulties__Option {
   cursor: pointer;
 
-  background: var(--primaryColor1);
+  background: var(--borderColor);
   border: 1px solid transparent;
   border-radius: var(--borderRadius);
 
@@ -17,7 +17,7 @@
   text-transform: capitalize;
 }
 .Difficulties__Option:hover {
-  border: 1px solid var(--borderColor);
+  border: 1px solid var(--chevronColor);
 }
 
 .Difficulties__OptionSelected {

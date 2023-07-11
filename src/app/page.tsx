@@ -10,7 +10,6 @@ export default function Home() {
   return (
     <div className={styles.Home}>
       <Sidebar />
-      <div className={styles.Home__Divider} />
       <MainContent />
     </div>
   )
