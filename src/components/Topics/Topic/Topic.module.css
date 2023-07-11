@@ -8,12 +8,11 @@
   font-weight: bold;
   font-size: medium;
 
+  border: 1px solid transparent;
   border-radius: var(--borderRadius);
 }
 
 .Topic:hover {
-  box-shadow: 2px 4px 4px 0px var(--boxShadowColor);
-
   border: 1px solid var(--borderColor);
 
   cursor: pointer;
@@ -24,7 +23,6 @@
 }
 
 .Topic__selected:hover {
-  box-shadow: none;
   border: none;
   cursor: auto;
 }

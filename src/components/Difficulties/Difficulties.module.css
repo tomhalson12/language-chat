@@ -8,24 +8,24 @@
   cursor: pointer;
 
   background: var(--primaryColor1);
+  border: 1px solid transparent;
   border-radius: var(--borderRadius);
-  border: 1px solid var(--borderColor);
 
   padding: 15px;
 
   font-size: small;
   text-transform: capitalize;
 }
-
 .Difficulties__Option:hover {
-  box-shadow: 2px 4px 4px 0px var(--boxShadowColor);
+  border: 1px solid var(--borderColor);
 }
 
 .Difficulties__OptionSelected {
+  border: 1px solid transparent;
   color: var(--textDarkBg);
 }
 
 .Difficulties__OptionSelected:hover {
-  box-shadow: none;
+  border: 1px solid transparent;
   cursor: auto;
 }

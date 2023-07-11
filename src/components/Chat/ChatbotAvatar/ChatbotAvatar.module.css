@@ -13,6 +13,6 @@
   font-size: var(--smallText);
   font-weight: bold;
 
-  box-shadow: 2px 4px 4px 0px var(--boxShadowColor);
+  box-shadow: 2px 2px 4px 0px var(--boxShadowColor);
   color: var(--textDarkBg);
 }

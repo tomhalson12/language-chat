@@ -11,7 +11,5 @@
 }
 
 .DifficultyButton:hover {
-  box-shadow: 2px 4px 4px 0px var(--boxShadowColor);
-
   border: 1px solid var(--borderColor);
 }
