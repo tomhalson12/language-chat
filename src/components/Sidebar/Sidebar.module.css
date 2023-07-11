@@ -4,30 +4,40 @@
   background: var(--primaryColor1);
   box-shadow: 2px 0px 15px 5px var(--boxShadowColor);
   position: relative;
-  transition: all 0.75s;
+  transition: left 0.75s;
   min-width: 0px;
   left: -360px;
   overflow: hidden;
-  width: 1px;
+  min-width: 350px;
 }
 
 .Sidebar__open {
   left: 0px;
-  width: 350px;
   min-width: 350px;
 }
 
 .Sidebar__Container {
   display: flex;
+  width: 0;
+  transition: width 1s;
+}
+
+.Sidebar__ContainerOpen {
+  width: 350px;
 }
 
 .Sidebar__Tab {
   position: relative;
-  top: 20px;
-  left: 20px;
   height: fit-content;
   display: flex;
   padding: 10px;
 
+  left: -330px;
+  top: 20px;
+  transition: left 0.75s;
   cursor: pointer;
+}
+
+.Sidebar__TabOpen {
+  left: 20px;
 }

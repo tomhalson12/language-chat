@@ -11,7 +11,11 @@ export const Sidebar = () => {
   const [open, setOpen] = React.useState(false)
 
   return (
-    <div className={styles.Sidebar__Container}>
+    <div
+      className={classNames(styles.Sidebar__Container, {
+        [styles.Sidebar__ContainerOpen]: open,
+      })}
+    >
       <div
         className={classNames(styles.Sidebar, {
           [styles.Sidebar__open]: open,
@@ -22,7 +26,12 @@ export const Sidebar = () => {
         <SavedPhrases />
       </div>
 
-      <div className={styles.Sidebar__Tab} onClick={() => setOpen(!open)}>
+      <div
+        className={classNames(styles.Sidebar__Tab, {
+          [styles.Sidebar__TabOpen]: open,
+        })}
+        onClick={() => setOpen(!open)}
+      >
         {open ? (
           <RxCross1 size={25} color="var(--textColor)" />
         ) : (
