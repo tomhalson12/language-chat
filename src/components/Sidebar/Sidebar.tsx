@@ -23,7 +23,7 @@ export const Sidebar = () => {
       >
         <Difficulties />
         <Topics />
-        <SavedPhrases />
+        {/* <SavedPhrases /> */}
       </div>
 
       <div

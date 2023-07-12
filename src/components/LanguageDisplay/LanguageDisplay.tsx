@@ -23,7 +23,7 @@ export const LanguageDisplay = () => {
           />
           <span className={styles.LanguageDisplay__ChangeIcon}>
             <LiaExchangeAltSolid
-              style={{ cursor: "pointer", minWidth: "30px", minHeight: "30px" }}
+              style={{ cursor: "pointer", minWidth: "40px", minHeight: "40px" }}
               onClick={() => setLanguage(undefined)}
               color={`var(--${language}Color)`}
             />

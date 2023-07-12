@@ -28,6 +28,7 @@ export const SavedPhrases = () => {
       title="Saved Phrases"
       description="Download saved phrases to use in anki"
       allowScroll={true}
+      collapsible={true}
       icon={<Icon onClick={downloadPhrases} name="export" />}
     >
       <div className={styles.SavedPhrases}>

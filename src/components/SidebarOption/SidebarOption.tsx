@@ -10,6 +10,7 @@ type SidebarOptionProps = {
   description: string
   allowScroll: boolean
   icon: ReactNode
+  collapsible: boolean
   children: ReactNode
 }
 
@@ -19,8 +20,9 @@ export const SidebarOption = ({
   allowScroll,
   icon,
   children,
+  collapsible,
 }: SidebarOptionProps) => {
-  const [open, setOpen] = React.useState(false)
+  const [open, setOpen] = React.useState(collapsible ? false : true)
 
   return (
     <div
@@ -30,16 +32,18 @@ export const SidebarOption = ({
     >
       <div
         className={styles.SidebarOption__TitleContainer}
-        onClick={() => setOpen(!open)}
+        onClick={() => !collapsible || setOpen(!open)}
       >
         {title}
-        <span
-          className={classNames(styles.SidebarOption__Chevron, {
-            [styles.SidebarOption__ChevronOpen]: open,
-          })}
-        >
-          <BsChevronDown color="var(--chevronColor)" />
-        </span>
+        {collapsible ? (
+          <span
+            className={classNames(styles.SidebarOption__Chevron, {
+              [styles.SidebarOption__ChevronOpen]: open,
+            })}
+          >
+            <BsChevronDown color="var(--chevronColor)" />
+          </span>
+        ) : null}
       </div>
 
       {open ? (

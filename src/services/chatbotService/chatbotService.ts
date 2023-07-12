@@ -95,9 +95,9 @@ export const startTopicConversation = async (
 export const getTopics = async (): Promise<string[]> =>
   USE_MODEL
     ? performChatCompletion(
-        "give me 5 1 word topics of conversation, only return the words, separate each topic by a two hyphens",
+        "give me 7 1 word topics of conversation, only return the words, separate each topic by a two hyphens",
         [],
         (choices) =>
           choices[0].message?.content?.split("--") || ["no response"],
       )
-    : ["Football", "Books", "Cooking", "Music", "Clothes"]
+    : ["Sport", "Nature", "Books", "Movies", "Art", "Fashion", "Health"]

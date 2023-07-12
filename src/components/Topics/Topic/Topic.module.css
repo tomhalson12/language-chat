@@ -1,7 +1,6 @@
 .Topic {
   display: flex;
   justify-content: space-between;
-  background-color: var(--borderColor);
 
   padding: 12px;
 

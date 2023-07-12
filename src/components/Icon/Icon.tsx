@@ -1,8 +1,8 @@
 "use client"
 
-import { IoIosRefresh } from "react-icons/io"
 import { useLanguage } from "../DataProvider"
 import { GoDownload } from "react-icons/go"
+import { IoIosRefresh } from "react-icons/io"
 import React from "react"
 
 interface IconProps {

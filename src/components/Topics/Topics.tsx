@@ -37,6 +37,7 @@ export const Topics = () => {
       title="Topics"
       description="Start a conversation about..."
       allowScroll={false}
+      collapsible={false}
       icon={
         <Icon
           className={iconSpin ? styles.Topics__RefreshIconSpin : ""}

@@ -2,8 +2,7 @@ import classNames from "classnames"
 import styles from "./MessageBubble.module.css"
 import { Language } from "@/types"
 import React from "react"
-
-import { AiFillStar, AiOutlineStar } from "react-icons/ai"
+import { BiSolidSave, BiSave } from "react-icons/bi"
 
 type MessageBubbleProps = {
   message: string
@@ -37,11 +36,11 @@ export const MessageBubble = ({
       >
         {message}
       </div>
-      {isSaved ? (
-        <AiFillStar onClick={() => deletePhrase(message)} {...iconProps} />
+      {/* {isSaved ? (
+        <BiSolidSave onClick={() => deletePhrase(message)} {...iconProps} />
       ) : (
-        <AiOutlineStar onClick={onClick} {...iconProps} />
-      )}
+        <BiSave onClick={onClick} {...iconProps} />
+      )} */}
     </div>
   )
 }

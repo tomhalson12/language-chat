@@ -7,15 +7,16 @@
 .Difficulties__Option {
   cursor: pointer;
 
-  background: var(--borderColor);
   border: 1px solid transparent;
   border-radius: var(--borderRadius);
 
-  padding: 15px;
+  padding: 8px 16px;
 
   font-size: small;
+  font-weight: 700;
   text-transform: capitalize;
 }
+
 .Difficulties__Option:hover {
   border: 1px solid var(--chevronColor);
 }
