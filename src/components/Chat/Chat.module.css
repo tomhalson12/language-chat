@@ -8,3 +8,13 @@
   align-items: center;
   width: 65%;
 }
+
+.Chat__Disclaimer {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  margin-top: 20px;
+
+  font-size: small;
+  color: var(--textColor);
+}

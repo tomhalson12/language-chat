@@ -9,6 +9,8 @@ import { MessageInput } from "./MessageInput"
 
 import { sendMessage, startTopicConversation } from "@/services/chatbotService"
 import { useDifficulty, useLanguage, useTopic } from "../DataProvider"
+import { translate } from "@/services/translationService"
+import { GoInfo } from "react-icons/go"
 
 export const Chat = () => {
   const { language } = useLanguage()
@@ -41,7 +43,7 @@ export const Chat = () => {
 
       startTopicConvo()
     })
-  }, [selectedTopic])
+  }, [difficulty, language, selectedTopic])
 
   const sendUserMessage = React.useCallback(
     async (message: string) => {
@@ -68,13 +70,30 @@ export const Chat = () => {
         })
       }
     },
-    [language, responses],
+    [difficulty, language, responses],
+  )
+
+  const translateMessage = React.useCallback(
+    async (message: string): Promise<string> =>
+      language
+        ? await translate(message, language)
+        : "No translation available",
+    [language],
   )
 
   return (
     <div className={styles.Chat}>
-      <ChatThread responses={responses} waitingForChatbot={isPending} />
+      <ChatThread
+        translateMessage={translateMessage}
+        responses={responses}
+        waitingForChatbot={isPending}
+      />
       <MessageInput sendMessage={sendUserMessage} disabled={isPending} />
+      <div className={styles.Chat__Disclaimer}>
+        <GoInfo style={{ minHeight: "15px", minWidth: "15px" }} />
+        This chat sends messages to an AI and uses third-party services, do not
+        send any personal or private information.
+      </div>
     </div>
   )
 }

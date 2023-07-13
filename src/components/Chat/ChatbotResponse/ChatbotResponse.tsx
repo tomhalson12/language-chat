@@ -3,12 +3,14 @@ import styles from "./ChatbotResponse.module.css"
 import { ChatbotAvatar } from "../ChatbotAvatar"
 import { MessageBubble } from "../MessageBubble"
 import { useLanguage } from "@/components/DataProvider"
+import { Language } from "@/types"
 
 type ChatbotResponseProps = {
   messages: string[]
   savedPhrases: string[]
   addPhrase: (phrase: string) => void
   deletePhrase: (phrase: string) => void
+  translateMsg: (msg: string, language: Language) => Promise<string>
 }
 
 export const ChatbotResponse = ({
@@ -16,6 +18,7 @@ export const ChatbotResponse = ({
   savedPhrases,
   addPhrase,
   deletePhrase,
+  translateMsg,
 }: ChatbotResponseProps) => {
   const { language } = useLanguage()
 
@@ -26,6 +29,7 @@ export const ChatbotResponse = ({
         {messages.map((message, i) => (
           <MessageBubble
             isUserMessage={false}
+            translateMsg={translateMsg}
             isSaved={savedPhrases.includes(message)}
             onClick={() => addPhrase(message)}
             deletePhrase={deletePhrase}

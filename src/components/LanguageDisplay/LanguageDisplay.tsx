@@ -35,7 +35,6 @@ export const LanguageDisplay = () => {
         className={styles.LanguageDisplay__Modal}
         style={{ overlay: { background: "var(--modalBackground)" } }}
       >
-        Choose a language
         <div className={styles.LanguageDisplay__Modal__Flags}>
           {languages.map((lang, i) => (
             <ReactCountryFlag

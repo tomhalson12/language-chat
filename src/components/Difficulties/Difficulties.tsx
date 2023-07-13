@@ -11,8 +11,9 @@ export const Difficulties = () => {
 
   const difficultiesList = React.useMemo(
     () =>
-      difficulties.map((difficulty) => (
+      difficulties.map((difficulty, i) => (
         <div
+          key={i}
           className={classNames(styles.Difficulties__Option, {
             [styles.Difficulties__OptionSelected]:
               currentDifficulty === difficulty,
@@ -27,7 +28,7 @@ export const Difficulties = () => {
           {difficulty}
         </div>
       )),
-    [currentDifficulty, difficulties, setDifficulty, language],
+    [currentDifficulty, setDifficulty, language],
   )
 
   return <div className={styles.Difficulties}>{difficultiesList}</div>

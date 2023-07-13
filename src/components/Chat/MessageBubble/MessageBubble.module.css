@@ -1,9 +1,17 @@
 .MessageBubble {
   display: flex;
-  flex-direction: row;
-  justify-content: space-between;
-  align-items: center;
+  flex-direction: column;
+  cursor: pointer;
   gap: 16px;
+}
+
+.MessageBubble__User {
+  margin-left: auto;
+  align-items: flex-end;
+}
+
+.MessageBubble__Chatbot {
+  margin-right: auto;
 }
 
 .MessageBubble__Bubble {
@@ -21,4 +29,10 @@
 .MessageBubble__lang {
   border: none;
   color: var(--textDarkBg);
+}
+
+.MessageBubble__Options {
+  display: flex;
+  flex-direction: column;
+  padding: 0 20px;
 }

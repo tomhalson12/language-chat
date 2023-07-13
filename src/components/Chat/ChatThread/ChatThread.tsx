@@ -2,7 +2,7 @@
 
 import styles from "./ChatThread.module.css"
 
-import { ChatResponse } from "@/types"
+import { ChatResponse, Language } from "@/types"
 import React, { ReactNode } from "react"
 import { MessageBubble } from "../MessageBubble"
 import { ChatbotResponse } from "../ChatbotResponse"
@@ -11,11 +11,13 @@ import { useLanguage, useSavedPhrases } from "@/components/DataProvider"
 type ChatThreadProps = {
   responses: ChatResponse[]
   waitingForChatbot: boolean
+  translateMessage: (msg: string, language: Language) => Promise<string>
 }
 
 export const ChatThread = ({
   responses,
   waitingForChatbot,
+  translateMessage,
 }: ChatThreadProps) => {
   const { language } = useLanguage()
   const { savedPhrases, addPhrase, deletePhraseByContent } = useSavedPhrases()
@@ -39,6 +41,7 @@ export const ChatThread = ({
                   language={language}
                   onClick={() => addPhrase(message)}
                   deletePhrase={deletePhraseByContent}
+                  translateMsg={translateMessage}
                   key={index}
                   message={message}
                 />
@@ -50,6 +53,7 @@ export const ChatThread = ({
                 savedPhrases={savedPhrases}
                 addPhrase={addPhrase}
                 deletePhrase={deletePhraseByContent}
+                translateMsg={translateMessage}
                 key={index}
                 messages={response.messages}
               />,

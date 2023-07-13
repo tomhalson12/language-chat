@@ -30,7 +30,7 @@ export const Topics = () => {
     if (topics.length === 0 && language) {
       refreshTopics()
     }
-  }, [language, topics])
+  }, [language, refreshTopics, topics])
 
   return (
     <SidebarOption
