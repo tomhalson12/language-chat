@@ -1,11 +1,14 @@
 "use client"
 
+import React from "react"
+
+import classNames from "classnames"
 import { BsArrowRight } from "react-icons/bs"
 
-import styles from "./Topic.module.css"
-import classNames from "classnames"
 import { useLanguage } from "@/components/DataProvider"
-import React from "react"
+
+import styles from "./Topic.module.css"
+
 
 type TopicProps = {
   title: string

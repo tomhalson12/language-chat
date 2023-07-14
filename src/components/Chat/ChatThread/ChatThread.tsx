@@ -1,12 +1,13 @@
 "use client"
 
-import styles from "./ChatThread.module.css"
-
-import { ChatResponse, Language } from "@/types"
 import React, { ReactNode } from "react"
-import { MessageBubble } from "../MessageBubble"
-import { ChatbotResponse } from "../ChatbotResponse"
+
 import { useLanguage, useSavedPhrases } from "@/components/DataProvider"
+import { ChatResponse, Language } from "@/types"
+
+import styles from "./ChatThread.module.css"
+import { ChatbotResponse } from "../ChatbotResponse"
+import { MessageBubble } from "../MessageBubble"
 
 type ChatThreadProps = {
   responses: ChatResponse[]

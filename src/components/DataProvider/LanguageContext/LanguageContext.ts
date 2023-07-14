@@ -1,7 +1,9 @@
 "use client"
 
-import { Language } from "@/types"
 import React from "react"
+
+import { Language } from "@/types"
+
 import { Action } from "../DataStateReducer"
 
 interface LanguageContext {

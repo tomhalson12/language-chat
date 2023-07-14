@@ -1,10 +1,9 @@
-import styles from "./SavedPhrases.module.css"
+import React from "react"
 
 import { SavedPhrase } from "./SavedPhrase/SavedPhrase"
-import { SidebarOption } from "../SidebarOption"
-import { Icon } from "../Icon"
-import React from "react"
+import styles from "./SavedPhrases.module.css"
 import { useSavedPhrases } from "../DataProvider"
+import { SidebarOption } from "../Sidebar"
 
 export const SavedPhrases = () => {
   const { savedPhrases: phrases, deletePhraseByIndex } = useSavedPhrases()
@@ -29,7 +28,8 @@ export const SavedPhrases = () => {
       description="Download saved phrases to use in anki"
       allowScroll={true}
       collapsible={true}
-      icon={<Icon onClick={downloadPhrases} name="export" />}
+      iconName="export"
+      iconOnClick={downloadPhrases}
     >
       <div className={styles.SavedPhrases}>
         {phrases.map((phrase, i) => (

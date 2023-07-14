@@ -20,43 +20,11 @@
   transform: rotate(180deg);
 }
 
-.LanguageDisplay__Flag,
-.LanguageDisplay__FlagLarge {
+.LanguageDisplay__Flag {
   width: fit-content !important;
   outline: 1px solid var(--flagBorder);
 }
 
 .LanguageDisplay__Flag {
   height: 75px !important;
-}
-
-.LanguageDisplay__FlagLarge {
-  height: 100px !important;
-  margin: 16px;
-  cursor: pointer;
-}
-
-.LanguageDisplay__FlagLarge:hover {
-  outline: 3px solid var(--flagBorder);
-}
-
-.LanguageDisplay__Modal {
-  width: 100%;
-  height: 80%;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-direction: column;
-  gap: 24px;
-  border: none;
-  outline: none;
-  font-size: xx-large;
-  font-weight: bold;
-  color: var(--textColor);
-}
-
-.LanguageDisplay__Modal__Flags {
-  max-width: 662px;
-  max-height: 395px;
-  overflow-y: auto;
 }

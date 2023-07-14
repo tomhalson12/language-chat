@@ -1,8 +1,0 @@
-.MainContent {
-  display: flex;
-  gap: 0;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: center;
-  width: 100%;
-}

@@ -1,7 +1,8 @@
 "use server"
 
-import { Language } from "@/types"
 import { Translator, TextResult, SourceLanguageCode } from "deepl-node"
+
+import { Language } from "@/types"
 
 export type TranslationData = {
   original: string

@@ -1,12 +1,13 @@
 "use client"
-import styles from "./Topics.module.css"
 
 import React from "react"
-import { Topic } from "./Topic"
+
 import { getTopics } from "@/services/chatbotService"
-import { Icon } from "../Icon"
-import { SidebarOption } from "../SidebarOption"
+
+import { Topic } from "./Topic"
+import styles from "./Topics.module.css"
 import { useLanguage, useTopic } from "../DataProvider"
+import { SidebarOption } from "../Sidebar"
 
 export const Topics = () => {
   const { selectedTopic, setTopic } = useTopic()
@@ -24,8 +25,8 @@ export const Topics = () => {
     setTimeout(() => {
       setIconSpin(false)
     }, 1000)
-  }, [])
-
+  }, [setTopic])
+  4
   React.useEffect(() => {
     if (topics.length === 0 && language) {
       refreshTopics()
@@ -38,13 +39,9 @@ export const Topics = () => {
       description="Start a conversation about..."
       allowScroll={false}
       collapsible={false}
-      icon={
-        <Icon
-          className={iconSpin ? styles.Topics__RefreshIconSpin : ""}
-          onClick={refreshTopics}
-          name="refresh"
-        />
-      }
+      iconName="refresh"
+      iconClassName={iconSpin ? styles.Topics__RefreshIconSpin : ""}
+      iconOnClick={refreshTopics}
     >
       <div className={styles.Topics}>
         {topics.map((topic, i) => (

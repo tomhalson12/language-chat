@@ -1,16 +1,21 @@
-import styles from "./SidebarOption.module.css"
 
 import { ReactNode } from "react"
-import classNames from "classnames"
 import React from "react"
+
+import classNames from "classnames"
 import { BsChevronDown } from "react-icons/bs"
+
+import styles from "./SidebarOption.module.css"
+import { SidebarOptionIcon, SidebarOptionIconProps } from "./SidebarOptionIcon"
 
 type SidebarOptionProps = {
   title: string
   description: string
   allowScroll: boolean
-  icon: ReactNode
   collapsible: boolean
+  iconName: SidebarOptionIconProps["name"]
+  iconClassName?: SidebarOptionIconProps["className"]
+  iconOnClick?: SidebarOptionIconProps["onClick"]
   children: ReactNode
 }
 
@@ -18,9 +23,11 @@ export const SidebarOption = ({
   title,
   description,
   allowScroll,
-  icon,
-  children,
+  iconName,
+  iconClassName,
+  iconOnClick,
   collapsible,
+  children,
 }: SidebarOptionProps) => {
   const [open, setOpen] = React.useState(collapsible ? false : true)
 
@@ -56,7 +63,11 @@ export const SidebarOption = ({
             <span className={styles.SidebarOption__Description}>
               {description}
             </span>
-            {icon}
+            <SidebarOptionIcon
+              name={iconName}
+              className={iconClassName}
+              onClick={iconOnClick}
+            />
           </div>
 
           {children}

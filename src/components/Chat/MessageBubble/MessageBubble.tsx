@@ -1,9 +1,11 @@
-import classNames from "classnames"
-import styles from "./MessageBubble.module.css"
-import { Language } from "@/types"
 import React from "react"
-import { BiSolidSave, BiSave } from "react-icons/bi"
+
+import classNames from "classnames"
 import { LiaExchangeAltSolid } from "react-icons/lia"
+
+import { Language } from "@/types"
+
+import styles from "./MessageBubble.module.css"
 
 type MessageBubbleProps = {
   message: string

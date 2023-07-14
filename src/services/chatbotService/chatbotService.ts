@@ -1,12 +1,13 @@
 "use server"
 
-import { ChatResponse, Difficulty, Language } from "@/types"
 import {
   Configuration,
   OpenAIApi,
   ChatCompletionRequestMessage,
   CreateChatCompletionResponse,
 } from "openai"
+
+import { ChatResponse, Difficulty, Language } from "@/types"
 
 const configuration = new Configuration({
   apiKey: process.env.OPENAI_API_KEY,

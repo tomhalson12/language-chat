@@ -1,4 +1,5 @@
 import React from "react"
+
 import { DifficultyContext } from "./DifficultyContext"
 
 export const useDifficulty = () => {

@@ -1,11 +1,14 @@
 // prettier-ignore
 "use client"
 
+import React, { useRef } from "react"
+
+import { BiSolidSend } from "react-icons/bi"
+
 import { useLanguage } from "@/components/DataProvider"
+
 import styles from "./MessageInput.module.css"
 
-import React, { useRef } from "react"
-import { BiSolidSend } from "react-icons/bi"
 
 type MessageInputProps = {
   sendMessage: (msg: string) => Promise<void>

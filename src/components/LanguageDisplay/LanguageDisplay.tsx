@@ -1,13 +1,13 @@
 "use client"
 
-import styles from "./LanguageDisplay.module.css"
+import React from "react"
 
 import ReactCountryFlag from "react-country-flag"
 import { LiaExchangeAltSolid } from "react-icons/lia"
-import React from "react"
-import { getCountryCode, useLanguage } from "../DataProvider"
-import Modal from "react-modal"
-import { languages } from "@/types"
+
+import styles from "./LanguageDisplay.module.css"
+import { LanguageSelectionModal } from "./LanguageSelectionModal"
+import { useLanguage } from "../DataProvider"
 
 export const LanguageDisplay = () => {
   const { language, languageCountryCode, setLanguage } = useLanguage()
@@ -30,23 +30,10 @@ export const LanguageDisplay = () => {
           </span>
         </>
       ) : null}
-      <Modal
-        isOpen={language === undefined}
-        className={styles.LanguageDisplay__Modal}
-        style={{ overlay: { background: "var(--modalBackground)" } }}
-      >
-        <div className={styles.LanguageDisplay__Modal__Flags}>
-          {languages.map((lang, i) => (
-            <ReactCountryFlag
-              key={i}
-              className={styles.LanguageDisplay__FlagLarge}
-              onClick={() => setLanguage(lang)}
-              countryCode={getCountryCode(lang)}
-              svg={true}
-            />
-          ))}
-        </div>
-      </Modal>
+      <LanguageSelectionModal
+        open={language === undefined}
+        setLanguage={setLanguage}
+      />
     </div>
   )
 }

@@ -1,9 +1,10 @@
-import styles from "./Difficulties.module.css"
-
-import { useDifficulty, useLanguage } from "../DataProvider"
 import React from "react"
+
 import { difficulties } from "@/types"
-import classNames from "classnames"
+
+import styles from "./Difficulties.module.css"
+import { DifficultyOption } from "./DifficultyOption"
+import { useDifficulty, useLanguage } from "../DataProvider"
 
 export const Difficulties = () => {
   const { difficulty: currentDifficulty, setDifficulty } = useDifficulty()
@@ -12,23 +13,15 @@ export const Difficulties = () => {
   const difficultiesList = React.useMemo(
     () =>
       difficulties.map((difficulty, i) => (
-        <div
+        <DifficultyOption
           key={i}
-          className={classNames(styles.Difficulties__Option, {
-            [styles.Difficulties__OptionSelected]:
-              currentDifficulty === difficulty,
-          })}
-          style={
-            currentDifficulty === difficulty
-              ? { background: `var(--${language}Color)` }
-              : {}
-          }
-          onClick={() => setDifficulty(difficulty)}
-        >
-          {difficulty}
-        </div>
+          language={language}
+          difficulty={difficulty}
+          isSelected={difficulty === currentDifficulty}
+          setDifficulty={setDifficulty}
+        />
       )),
-    [currentDifficulty, setDifficulty, language],
+    [currentDifficulty, language, setDifficulty],
   )
 
   return <div className={styles.Difficulties}>{difficultiesList}</div>

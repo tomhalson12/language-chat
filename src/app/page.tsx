@@ -1,16 +1,21 @@
 "use client"
 
-import styles from "./page.module.css"
-
-import { MainContent } from "@/components/MainContent"
 import React from "react"
+
+import { Chat } from "@/components/Chat"
+import { LanguageDisplay } from "@/components/LanguageDisplay"
 import { Sidebar } from "@/components/Sidebar"
+
+import styles from "./page.module.css"
 
 export default function Home() {
   return (
     <div className={styles.Home}>
       <Sidebar />
-      <MainContent />
+      <div className={styles.Home__Content}>
+        <LanguageDisplay />
+        <Chat />
+      </div>
     </div>
   )
 }

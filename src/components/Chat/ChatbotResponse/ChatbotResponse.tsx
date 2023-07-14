@@ -1,9 +1,9 @@
-import styles from "./ChatbotResponse.module.css"
-
-import { ChatbotAvatar } from "../ChatbotAvatar"
-import { MessageBubble } from "../MessageBubble"
 import { useLanguage } from "@/components/DataProvider"
 import { Language } from "@/types"
+
+import styles from "./ChatbotResponse.module.css"
+import { ChatbotAvatar } from "../ChatbotAvatar"
+import { MessageBubble } from "../MessageBubble"
 
 type ChatbotResponseProps = {
   messages: string[]

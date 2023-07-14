@@ -1,6 +1,7 @@
+import { RxCross2 } from "react-icons/rx"
+
 import styles from "./SavedPhrase.module.css"
 
-import { RxCross2 } from "react-icons/rx"
 
 type SavedPhraseProps = {
   phrase: string

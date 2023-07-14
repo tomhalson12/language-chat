@@ -1,8 +1,10 @@
 "use client"
 
 import React from "react"
-import { Action } from "../DataStateReducer"
+
 import { Difficulty } from "@/types"
+
+import { Action } from "../DataStateReducer"
 
 interface DifficultyContext {
   difficulty: Difficulty

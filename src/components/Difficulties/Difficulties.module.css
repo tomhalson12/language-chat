@@ -3,30 +3,3 @@
   display: flex;
   justify-content: space-around;
 }
-
-.Difficulties__Option {
-  cursor: pointer;
-
-  border: 1px solid transparent;
-  border-radius: var(--borderRadius);
-
-  padding: 8px 16px;
-
-  font-size: small;
-  font-weight: 700;
-  text-transform: capitalize;
-}
-
-.Difficulties__Option:hover {
-  border: 1px solid var(--chevronColor);
-}
-
-.Difficulties__OptionSelected {
-  border: 1px solid transparent;
-  color: var(--textDarkBg);
-}
-
-.Difficulties__OptionSelected:hover {
-  border: 1px solid transparent;
-  cursor: auto;
-}

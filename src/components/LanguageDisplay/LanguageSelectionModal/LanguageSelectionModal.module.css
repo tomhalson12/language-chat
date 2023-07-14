@@ -1,0 +1,32 @@
+.LanguageSelectionModal {
+  width: 100%;
+  height: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 24px;
+  border: none;
+  outline: none;
+  font-size: xx-large;
+  font-weight: bold;
+  color: var(--textColor);
+}
+
+.LanguageSelectionModal__Flags {
+  max-width: 662px;
+  max-height: 395px;
+  overflow-y: auto;
+}
+
+.LanguageSelectionModal__FlagLarge {
+  height: 100px !important;
+  margin: 16px;
+  cursor: pointer;
+  width: fit-content !important;
+  outline: 1px solid var(--flagBorder);
+}
+
+.LanguageSelectionModal__FlagLarge:hover {
+  outline: 3px solid var(--flagBorder);
+}

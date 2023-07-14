@@ -1,11 +1,11 @@
 import React from "react"
 
-import { Difficulties } from "../Difficulties"
-import { SavedPhrases } from "../SavedPhrases"
-import { Topics } from "../Topics"
-import styles from "./Sidebar.module.css"
-import { RxHamburgerMenu, RxCross1 } from "react-icons/rx"
 import classNames from "classnames"
+import { RxHamburgerMenu, RxCross1 } from "react-icons/rx"
+
+import styles from "./Sidebar.module.css"
+import { Difficulties } from "../Difficulties"
+import { Topics } from "../Topics"
 
 export const Sidebar = () => {
   const [open, setOpen] = React.useState(false)

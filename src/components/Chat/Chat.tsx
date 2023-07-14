@@ -1,16 +1,18 @@
 "use client"
 import React, { useTransition } from "react"
 
-import styles from "./Chat.module.css"
-
-import { ChatResponse } from "@/types"
-import { ChatThread } from "./ChatThread"
-import { MessageInput } from "./MessageInput"
+import { GoInfo } from "react-icons/go"
 
 import { sendMessage, startTopicConversation } from "@/services/chatbotService"
-import { useDifficulty, useLanguage, useTopic } from "../DataProvider"
 import { translate } from "@/services/translationService"
-import { GoInfo } from "react-icons/go"
+import { ChatResponse } from "@/types"
+
+import styles from "./Chat.module.css"
+import { ChatThread } from "./ChatThread"
+import { MessageInput } from "./MessageInput"
+import { useDifficulty, useLanguage, useTopic } from "../DataProvider"
+
+
 
 export const Chat = () => {
   const { language } = useLanguage()

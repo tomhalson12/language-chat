@@ -2,17 +2,18 @@
 
 import React from "react"
 import { ReactNode } from "react"
+
 import { dataStateReducer } from "./DataStateReducer"
-import { LanguageContext, buildLanguageContextValue } from "./LanguageContext"
-import { TopicContext, buildTopicContextValue } from "./TopicContext"
-import {
-  SavedPhrasesContext,
-  buildSavedPhrasesContextValue,
-} from "./SavedPhrasesContext"
 import {
   DifficultyContext,
   buildDifficultyContextValue,
 } from "./DifficultyContext"
+import { LanguageContext, buildLanguageContextValue } from "./LanguageContext"
+import {
+  SavedPhrasesContext,
+  buildSavedPhrasesContextValue,
+} from "./SavedPhrasesContext"
+import { TopicContext, buildTopicContextValue } from "./TopicContext"
 
 interface DataProviderProps {
   children: ReactNode
